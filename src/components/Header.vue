@@ -6,36 +6,32 @@
                     :src="require('../assets/logo-1644232788.jpeg')" 
                     alt="Header Image" 
                     class="header-image" 
-                    @click="navigateTo('main')" 
+                    @click="setActive('main')" 
                 />   
             </div>
             
             <nav class="nav">
                 <ul>
                   
-                    <li @mouseover="setActive('3dParts')" @mouseleave="setActive('')" :class="{ active: activeLink === '3dParts' }"  @click="navigateTo('3dParts')">3D Parts</li>
-                    <li @mouseover="setActive('brands')" @mouseleave="setActive('')" :class="{ active: activeLink === 'brands' }" @click="navigateTo('brands')">brands</li>
-                    <li @mouseover="setActive('resources')" @mouseleave="setActive('')" :class="{ active: activeLink === 'resources' }" @click="navigateTo('resources')">resources</li>
-                    <li @mouseover="setActive('faq')" @mouseleave="setActive('')" :class="{ active: activeLink === 'faq' }" @click="navigateTo('faq')">faq</li>
-                    <li @mouseover="setActive('contact')" @mouseleave="setActive('')" :class="{ active: activeLink === 'contact' }" @click="navigateTo('contact')">contact</li>
+                    <li :class="{ active: activeLink === '3dParts' }" @click="setActive('3dParts')"  >3D Parts</li>
+                    <li :class="{ active: activeLink === 'brands' }" @click="setActive('brands')">brands</li>
+                    <li :class="{ active: activeLink === 'resources' }" @click="setActive('resources')">resources</li>
+                    <li :class="{ active: activeLink === 'faq' }" @click="setActive('faq')">faq</li>
+                    <li :class="{ active: activeLink === 'contact' }" @click="setActive('contact')">contact</li>
                 </ul>
             </nav>
             <div class="log-reg">
                 <nav class="LoginRegister">
-                  <li class="login" 
-                    :class="{ active: activeLink === 'login' }" 
-                    @click="navigateTo('login')"
-                  >
-                    <a href="#" class="login-link">Login</a>
-                  </li>
-                  <li class="register" 
-                    :class="{ active: activeLink === 'register' }"
-                  >
-                    <a href="#" class="login-link" 
-                      @click="navigateTo('register')" 
-                      style="cursor:pointer;"
-                    >Register</a>
-                  </li>
+                  <!-- <ul> -->
+                    <li class="login" 
+                      :class="{ active: activeLink === 'login' }" 
+                      @click="setActive('login')">Login
+                    </li>
+                    <li class="register" 
+                      :class="{ active: activeLink === 'register' }">
+                        Register
+                    </li>
+                  <!-- </ul> -->
                 </nav>
             </div>
             
@@ -54,20 +50,27 @@
       setActive(link) {
         this.activeLink = link;
       },
-      navigateTo(link) {
+      setActive(link) {
         if (link === '3dParts') {
+          this.activeLink = '3dParts';
           this.$router.push('/gear-reducers'); 
         } else if (link === 'main') {
+          this.activeLink = 'main';
           this.$router.push('/'); 
         } else if (link == 'brands'){
+          this.activeLink = 'brands';
           this.$router.push('/brands');
         } else if (link == 'resources'){
+          this.activeLink = 'resources';
           this.$router.push('/resources');
         } else if (link == 'faq'){
+          this.activeLink = 'faq';
           this.$router.push('/faq');
         } else if (link == 'contact'){
+          this.activeLink = 'contact';
           this.$router.push('/contact');
         } else if (link == 'login'){
+          this.activeLink = 'login';
           this.$router.push('/login');
         } 
       },
@@ -121,6 +124,7 @@
   }
   
   nav ul {
+
     flex-direction: row;
     justify-content: space-between;
     display: flex;
@@ -137,7 +141,7 @@
     line-height: 1em;
     color: #333;
     text-transform: uppercase;
-    padding: 3% 10px 1% 1px;
+    padding: 2% 10px 2% 1px;
     display: block;
     float: none;
     height: auto !important;   
@@ -150,7 +154,7 @@
   
   nav li.active {
     color: red; 
-  }
+}
   
   .log-reg{
     padding-left: 5%;
@@ -166,9 +170,10 @@
   }
   .login{
     list-style: none;
+    text-transform: none  !important;
     /* background-color: #f9f9f9; */
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: px; */
+    padding-right: 20px;
     border-right: 1px solid #ccc;
     color: #333;
     display: list-item;
@@ -178,9 +183,10 @@
   .register{
     list-style: none;
     border-right: 0px solid #ccc !important;
+    text-transform: none  !important;
     /* background-color: #f9f9f9; */
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
     /* border-right: 1px solid #ccc; */
     color: #333;
     display: list-item;
@@ -190,17 +196,10 @@
   a{
     text-decoration: none;
   }
-  .login-link{
-    display: block;
-    float: none;
-    height: auto !important;
-    line-height: 1.5em;
-    color: #333;
-    font-size: 1em !important;
-    padding: 1% 10px 1% 1px !important;
-  }
+
   li:hover {
     color: red;
   } 
+  
 </style>
   
