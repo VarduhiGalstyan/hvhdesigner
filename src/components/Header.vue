@@ -12,22 +12,31 @@
             
             <nav class="nav">
                 <ul>
-                    <li @mouseover="setActive('3dParts')" @mouseleave="setActive('')" :class="{ active: activeLink === '3dParts' }" @click="navigateTo('3dParts')">3D Parts</li>
-                    <li @mouseover="setActive('brands')" @mouseleave="setActive('')" :class="{ active: activeLink === 'brands' }">brands</li>
-                    <li @mouseover="setActive('resources')" @mouseleave="setActive('')" :class="{ active: activeLink === 'resources' }">resources</li>
-                    <li @mouseover="setActive('faq')" @mouseleave="setActive('')" :class="{ active: activeLink === 'faq' }">faq</li>
-                    <li @mouseover="setActive('contact')" @mouseleave="setActive('')" :class="{ active: activeLink === 'contact' }">contact</li>
+                  
+                    <li @mouseover="setActive('3dParts')" @mouseleave="setActive('')" :class="{ active: activeLink === '3dParts' }"  @click="navigateTo('3dParts')">3D Parts</li>
+                    <li @mouseover="setActive('brands')" @mouseleave="setActive('')" :class="{ active: activeLink === 'brands' }" @click="navigateTo('brands')">brands</li>
+                    <li @mouseover="setActive('resources')" @mouseleave="setActive('')" :class="{ active: activeLink === 'resources' }" @click="navigateTo('resources')">resources</li>
+                    <li @mouseover="setActive('faq')" @mouseleave="setActive('')" :class="{ active: activeLink === 'faq' }" @click="navigateTo('faq')">faq</li>
+                    <li @mouseover="setActive('contact')" @mouseleave="setActive('')" :class="{ active: activeLink === 'contact' }" @click="navigateTo('contact')">contact</li>
                 </ul>
             </nav>
             <div class="log-reg">
-                <div class="LoginRegister">
-                <li class="login">
+                <nav class="LoginRegister">
+                  <li class="login" 
+                    :class="{ active: activeLink === 'login' }" 
+                    @click="navigateTo('login')"
+                  >
                     <a href="#" class="login-link">Login</a>
-                </li>
-                <li class="register">
-                    <a href="#" class="login-link" style="cursor:pointer;">Register</a>
-                   </li>
-                </div>
+                  </li>
+                  <li class="register" 
+                    :class="{ active: activeLink === 'register' }"
+                  >
+                    <a href="#" class="login-link" 
+                      @click="navigateTo('register')" 
+                      style="cursor:pointer;"
+                    >Register</a>
+                  </li>
+                </nav>
             </div>
             
         </div>
@@ -47,10 +56,20 @@
       },
       navigateTo(link) {
         if (link === '3dParts') {
-          this.$router.push('/gear-reducers'); // Navigating to Gear Reducers
+          this.$router.push('/gear-reducers'); 
         } else if (link === 'main') {
-          this.$router.push('/'); // Navigating to the main page
-        }
+          this.$router.push('/'); 
+        } else if (link == 'brands'){
+          this.$router.push('/brands');
+        } else if (link == 'resources'){
+          this.$router.push('/resources');
+        } else if (link == 'faq'){
+          this.$router.push('/faq');
+        } else if (link == 'contact'){
+          this.$router.push('/contact');
+        } else if (link == 'login'){
+          this.$router.push('/login');
+        } 
       },
     },
   };
@@ -74,6 +93,9 @@
     /* padding-left: 20px; */
   }
   .header{
+    width: 100%;
+    background: #fff;
+    z-index: 9;
     display: flex !important;
     width: 100%;
     align-items: center;
@@ -112,10 +134,10 @@
     border-right: 1px solid #ccc;
     color: #333;
     font-size: 1.2em;
-    line-height: 1.5em;
+    line-height: 1em;
     color: #333;
     text-transform: uppercase;
-    padding: 14px 10px;
+    padding: 3% 10px 1% 1px;
     display: block;
     float: none;
     height: auto !important;   
@@ -127,8 +149,9 @@
   }
   
   nav li.active {
-    color: red; /* Active link color */
+    color: red; 
   }
+  
   .log-reg{
     padding-left: 5%;
   }
@@ -143,7 +166,7 @@
   }
   .login{
     list-style: none;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     padding-left: 15px;
     padding-right: 15px;
     border-right: 1px solid #ccc;
@@ -154,7 +177,8 @@
   }
   .register{
     list-style: none;
-    background-color: #f9f9f9;
+    border-right: 0px solid #ccc !important;
+    /* background-color: #f9f9f9; */
     padding-left: 15px;
     padding-right: 15px;
     /* border-right: 1px solid #ccc; */
@@ -164,7 +188,7 @@
     unicode-bidi: isolate;
   }
   a{
-    display: none;
+    text-decoration: none;
   }
   .login-link{
     display: block;
@@ -173,7 +197,10 @@
     line-height: 1.5em;
     color: #333;
     font-size: 1em !important;
-    padding: 14px 5px !important;
+    padding: 1% 10px 1% 1px !important;
   }
-  </style>
+  li:hover {
+    color: red;
+  } 
+</style>
   

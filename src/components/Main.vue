@@ -11,7 +11,7 @@
   <style>
   main {
     padding: 20px;
-    text-align: center; /* Center align main content */
+    text-align: center;
   }
   </style>
   
