@@ -6,6 +6,9 @@ import Resources from '@/components/Resources.vue';
 import Faq from '@/components/Faq.vue';
 import Contact from '@/components/Contact.vue';
 import Login from '@/components/Login.vue';
+import Terms from '@/components/Terms.vue';
+import Privacy from '@/components/Privacy.vue';
+import About from '@/components/About.vue';
 
 const routes = [
   {
@@ -47,6 +50,22 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: Terms,
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: Privacy,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   }
 ];
 

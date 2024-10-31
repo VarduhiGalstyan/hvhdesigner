@@ -39,7 +39,7 @@
     </header>
   </template>
   
-  <script>
+  <script >
   export default {
     data() {
       return {
@@ -78,7 +78,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   
   header {
     padding: 0;
