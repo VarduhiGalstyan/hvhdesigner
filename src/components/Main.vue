@@ -66,6 +66,65 @@
           <button class="button2">Buy now</button>
         </div>
       </div>
+      <div class="windows">
+        <div class="windows-img"> 
+          <img src="../assets/1593812195566_1651022973.jpg" alt="image" style="float: left; height: 423px; max-width: 500px;">
+        </div>
+        <div class="windows-information1">
+          <h1>What is HVH Desingner?</h1>
+          <p>
+            <span >HVH Designer is a web-based computer-aided design (CAD) software, developed by HVH Industrial Solutions. HVH Industrial is an industrial distributor focused on power transmission, motion control, and automation. We worked with our manufacturers to craft a comprehensive database of the 3D models of standard components of the offered products. </span>
+          </p>
+          <p><h2 style="font-size: 20px; line-height: 1.5; font-weight: bolder;">Time is valuable, so our focus is to save you time.</h2></p>
+          <ul>
+            <li>Easy to use CAD software, saves you time in the design process</li>
+            <li>Powerful search tools save time when it comes to searching standard 3D models for your project</li>
+            <li>Help with finding and selecting the right components</li>
+            <li>Custom solutions tailored to your specific requirements</li>
+            <li>With one click you can submit your bill of material for quotation</li>
+            <li>Individual approach to every customer of every size. There are no small or big customers for us </li>
+          </ul>
+        </div>
+      </div>
+      <div class="windows">
+        <div class="windows-information1">
+          <h1 >What you can do with HVH Designer</h1>
+          <ul>
+            <li>HVH Designer is a fully online design solution you can access from any web browser. No download is required. </li>     
+            <li>Design with mathematical precision. HVH Designer is powered by Siemens® Parasolid®, the same engine that drives SOLIDWORKS, Solid Edge, Onshapem, Siemens NX, MasterCAM, and more.</li>
+            <li>Our powerful search tools will enable you to find the required standard component for your project fast and easily. </li>
+            <li>If you can not find a model or need a customized solution, we've got your back. Our support team is just a click away.</li>
+            <li>At HVH, we work closely with the engineering teams of our manufacturers to provide superior customer service and engineering support.</li>
+          </ul>
+        </div>
+        <div class="windows-img2"> 
+          <img src="../assets/Untitled.png" alt="image2" style="float: right; height: 400px;margin: 30px; width: 400px;">
+        </div>
+      </div>
+      <div>
+        <hr>
+        <div class="end-max">
+          <div class="end">
+            <div class="step-img" style="margin-left: 20px;" >
+              <img src="../assets/photo-1651197310.jpg" 
+              style="height: 150px !important; width: 230px !important; margin-top: 22%;" 
+              alt="step-img">
+            </div>
+            <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
+                <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
+                  <span style="color: red !important;">
+                    What is a STEP File Format
+                  </span>
+                  <p></p>
+                  <span style="color: #6c757d !important;">
+                    STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
+                  </span>
+                </a>
+            </div>
+          </div>
+            <div></div>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -188,21 +247,29 @@
   text-align: center;
   color: #6c757d;
   padding-top: 100px ;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
   font-size: 26px;
   font-weight: 700;
+  margin-left: 12%;
 }
 .windows{
   display: flex;
-  padding: 8%;
+  padding: 1%;
 }
 .window{
-  /* max-width: 30%; */
+  max-width: 35%; 
   /* padding-right: 10px; */
-  padding: 2%;
+  padding:5%;
   cursor: pointer;
   box-shadow: 1px 1px 8px 0 rgb(175 167 167 / 88%),
               0 6px 20px 0 rgb(140 133 133 / 12%);
+  flex: 0 0 33.3333333333%;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+
+  margin: 1.5rem !important;
+  text-align: center;
 }
 .name{
   font-weight: bold;
@@ -210,6 +277,7 @@
   font-size: 35px !important;
   text-align: center;
   box-sizing: border-box;
+  line-height: 1.5;
 }
 .about{
   text-align: center;
@@ -217,10 +285,116 @@
   color: #6c757d;
   font-weight: 500;
   font-size: 1rem;
+  line-height: 1.5;
 }
 .mounth-year{
   color: #000;
   font-weight: 500;
 }
-  </style>
+.windows-img{
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-top: 6%;
+  /* padding-left: 15px; */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: left;
+}
+.windows-img img{
+  float: left;
+  height: 423px;
+  width: 100% !important;
+  margin: 0 !important;
+  max-width: 100%;
+  object-fit: contain;
+  vertical-align: middle;
+  border-style: none;
+}
+.windows-img2{
+  width: 100%;
+
+}
+.windows-information1 {
+  padding-top: 1%;
+  padding: 5% 5% 0 5%;
+  flex: 0 0 80.6666666667%;
+  max-width: 70.6666666667%;
+
+}
+.windows-information1 h1{
+  padding-bottom: 5%;
+}
+.windows-information1 p span{
+  color: #000000;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 10px !important;
+  font-size: 1rem;
+}
+li{
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+hr{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 1);
+}
+.end-max{
+  display: flex;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  
+}
+.end-information{
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+  position: relative;
+  width: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+.blog{
+  columns: #77787b;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  
+}
+.blog:hover{
+  
+}
+.end{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+.step-img{
+  justify-content: center;
+    border: 1px solid #eee;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.start-img img{
+  width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    max-width: 100%;
+    vertical-align: middle;
+    border-style: none;
+}
+
+</style>
   
