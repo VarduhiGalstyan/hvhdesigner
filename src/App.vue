@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style>
-/* Global styles if needed */
+img{
+  vertical-align: middle;
+}
 </style>
