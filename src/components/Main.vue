@@ -39,8 +39,33 @@
           <img src="../assets/photo-1650836908.png" alt="photo-1650836908.png">
         </div>
     </div>
-    <div>
-      fdgvh
+    <div class="pricing">
+      <div class="procong-name">Procong</div>
+      <div class="windows">
+        <div class="window">
+          <span class="name">Free</span>
+          <p></p>
+          <span class="about">3D parts library</span>
+          <p></p>
+          <button class="button2">Buy now</button>
+        </div>
+        <div class="window">
+          <span class="name">$29</span>
+          <span class="mounth-year">/mouth</span>
+          <p></p>
+          <span class="about">Single user Cad software with our 3D parts library</span>
+          <p></p>
+          <button class="button2">Buy now</button>
+        </div>
+        <div class="window">
+          <span class="name">$299</span>
+          <span class="mounth-year">/year</span>
+          <p></p>
+          <span class="about">Single user Cad software with our 3D parts library</span>
+          <p></p>
+          <button class="button2">Buy now</button>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -101,6 +126,7 @@
   content: '';
   position: absolute;
   top: 0;
+  font-weight: 550;
   right: -100%; 
   width: 100%; 
   height: 100%; 
@@ -117,8 +143,10 @@
 
 .button2 {
   background-color: white; 
-  border: 2px solid red; 
-  color: red; 
+  border: 1px solid red; 
+  color: #000; 
+  font-weight: 550;
+  font-size: 14px;
   padding: 10px 20px; 
   cursor: pointer;
   position: relative; 
@@ -150,6 +178,49 @@
   position: relative;
   z-index: 1; 
 }
-  
+
+.pricing{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+.procong-name{
+  text-align: center;
+  color: #6c757d;
+  padding-top: 100px ;
+  padding-bottom: 60px;
+  font-size: 26px;
+  font-weight: 700;
+}
+.windows{
+  display: flex;
+  padding: 8%;
+}
+.window{
+  /* max-width: 30%; */
+  /* padding-right: 10px; */
+  padding: 2%;
+  cursor: pointer;
+  box-shadow: 1px 1px 8px 0 rgb(175 167 167 / 88%),
+              0 6px 20px 0 rgb(140 133 133 / 12%);
+}
+.name{
+  font-weight: bold;
+  color: #f52c2f;
+  font-size: 35px !important;
+  text-align: center;
+  box-sizing: border-box;
+}
+.about{
+  text-align: center;
+  justify-content: center;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.mounth-year{
+  color: #000;
+  font-weight: 500;
+}
   </style>
   
