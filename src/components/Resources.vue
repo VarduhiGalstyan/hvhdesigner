@@ -1,3 +1,238 @@
 <template>
-    <div>cfgchgvbnj</div>
+    <div class="resources-max">
+        <div class="resources-top">
+            <img src="../assets/photo-1651197310.jpg" 
+              style="height: 130px !important; width: 260px !important; padding-left: 5%; padding-top: 10px;" 
+              alt="step-img">      
+            <div class="center">
+                <h1>What is a STEP File Format</h1>
+                <span>
+                    STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
+                </span>
+            </div>
+            <div  class="resources-top-right">
+                <span>Get the latest news delivered to your inbox</span>
+                <p></p>
+                <span style="color: #000000 !important; ">Insights twice a month</span>
+                <p></p>
+                <table>Email</table>
+                <input type="text" placeholder="Enter ypur email address" style="height: 25px; width: 85%;">
+                <button class="button2">Subscibe</button>
+            </div>
+        </div>
+        <nav class="nav">
+            <div class="span">Filter by:</div>
+            <ul>   
+                <li :class="{ active: activeLink === 'all' }" @click="setActive('all')"  >All</li>
+                <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">Tutorials</li>
+                <li :class="{ active: activeLink === 'techtips' }" @click="setActive('techtips')">Tech Tips</li>
+                <li :class="{ active: activeLink === 'designtips' }" @click="setActive('designtips')">Design Tips</li>
+                <li :class="{ active: activeLink === 'onlinecourses' }" @click="setActive('onlinecourses')">Online Courses</li>
+                <li :class="{ active: activeLink === 'products' }" @click="setActive('products')">Products</li>
+            </ul>
+        </nav>
+        <div class="end-max">
+          <div class="end">
+            <div class="step-img" style="margin-left: 20px;" >
+              <img src="../assets/photo-1651197310.jpg" 
+              style="height: 150px !important; width: 230px !important; margin-top: 22%;" 
+              alt="step-img">
+            </div>
+            <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
+                <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
+                  <span style="color: red !important;">
+                    What is a STEP File Format
+                  </span>
+                  <p></p>
+                  <span style="color: #6c757d !important;">
+                    STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
+                  </span>
+                </a>
+            </div>
+          </div>
+            <!-- <div></div> -->
+        </div>
+    </div>
 </template>
+
+<style scoped>
+button{
+    background-color: #fff;
+}
+.max-center{
+    display: flex;
+}
+.resources-max{
+    display: flex;
+    flex-direction: column; 
+    padding: 10px 18% 10% 22%;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;    
+}
+.resources-top{
+    display: flex;
+}
+.center{
+    width: 30%;
+    padding-left: 7%;
+}
+.center h1{
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.6;
+}
+span, .span{
+    font-size: 16px;
+    font-weight: 500;
+    color: #6c757d;
+    line-height: 1.6;
+}
+.resources-top-right{
+    padding-left: 7%;
+    
+}
+nav {
+    flex-grow: 1; /* Allow nav to take the remaining space */
+    justify-content: space-between;
+    /* display: flex; */
+  }
+  
+  nav ul {
+
+    flex-direction: row;
+    /* justify-content: space-between; */
+    display: flex;
+    list-style: none;
+  }
+  li:hover {
+    color: red;
+  } 
+
+  nav li {
+
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;    color: #333;
+    font-size: 0.9em;
+    color: #6c757d;
+    text-transform: capitalize;
+    margin-right: 1%;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: block;
+    float: none;
+    height: auto !important;   
+    display: list-item;
+    /* text-align: -webkit-match-parent; */
+    unicode-bidi: isolate;
+    cursor: pointer;
+  }
+  
+  nav li.active {
+    color: red; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.button2 {
+  background-color: white; 
+  margin-top: 10px;
+  border: 1px solid red; 
+  color: #000; 
+  font-weight: 550;
+  font-size: 14px;
+  padding: 10px 20px; 
+  cursor: pointer;
+  position: relative; 
+  overflow: hidden;
+}
+.button2:hover {
+  /* background-color: red;  */
+  color: white; 
+}
+
+.button2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: red; 
+  transform: translate(-50%, -50%) scale(0); 
+  transition: transform 0.4s ease; 
+  z-index: 0;
+}
+.button2:hover::before {
+  transform: translate(-50%, -50%) scale(1); 
+}
+
+.button2 span {
+  position: relative;
+  z-index: 1; 
+}
+.end-max{
+  display: flex;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  
+}
+.end-information{
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+  position: relative;
+  max-width: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+.blog:hover{
+  text-decoration: ;
+}
+.blog{
+  columns: #77787b;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  
+}
+.end-information:hover{
+  text-decoration: underline;
+}
+.end{
+width: 290px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+.step-img{
+  justify-content: center;
+    border: 1px solid #eee;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.start-img img{
+    width: 100%;
+    height: 100% ;
+    object-fit: contain !important;
+    max-width: 100%;
+    vertical-align: middle;
+    border-style: none;
+}
+</style>

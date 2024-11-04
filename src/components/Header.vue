@@ -157,7 +157,7 @@
 }
   
   .log-reg{
-    padding-left: 5%;
+    padding-left: 6%;
   }
   .LoginRegister{
     margin-left: 20px;

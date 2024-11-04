@@ -122,7 +122,7 @@
                 </a>
             </div>
           </div>
-            <div></div>
+            <!-- <div></div> -->
         </div>
       </div>
     </div>
@@ -360,9 +360,12 @@ hr{
   flex: 0 0 33.3333333333%;
   max-width: 33.3333333333%;
   position: relative;
-  width: 100%;
+  max-width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
+}
+.blog:hover{
+  text-decoration: ;
 }
 .blog{
   columns: #77787b;
@@ -371,10 +374,11 @@ hr{
   cursor: pointer;
   
 }
-.blog:hover{
-  
+.end-information:hover{
+  text-decoration: underline;
 }
 .end{
+width: 290px;
   display: flex;
   flex-direction: column; 
   justify-content: center;
