@@ -28,10 +28,10 @@
           </div>
           <div class="buttons">
             <div>
-              <button class="button1">REQUEST FREE TRIAL</button>
+              <button class="button1"><span>REQUEST FREE TRIAL</span></button>
             </div>
             <div>
-              <button class="button2">REQUEST A DWMO</button>
+       <button class="button2"><span>REQUEST A DWMO</span></button>
             </div>
           </div> 
         </div>
@@ -47,7 +47,7 @@
           <p></p>
           <span class="about">3D parts library</span>
           <p></p>
-          <button class="button2">Buy now</button>
+          <button class="button2"><span> Buy now</span></button>
         </div>
         <div class="window">
           <span class="name">$29</span>
@@ -55,7 +55,7 @@
           <p></p>
           <span class="about">Single user Cad software with our 3D parts library</span>
           <p></p>
-          <button class="button2">Buy now</button>
+          <button class="button2"><span>Buy now</span></button>
         </div>
         <div class="window">
           <span class="name">$299</span>
@@ -63,7 +63,7 @@
           <p></p>
           <span class="about">Single user Cad software with our 3D parts library</span>
           <p></p>
-          <button class="button2">Buy now</button>
+          <button class="button2"><span>Buy now</span></button>
         </div>
       </div>
       <div class="windows">
@@ -133,7 +133,7 @@
   export default {};
   </script>
   
-  <style>
+  <style scoped>
   main {
     padding: 10px 20% 10% 22%;
     text-align: justify;
@@ -170,14 +170,22 @@
     gap: 10px; /* Space between buttons */
   }
 
+  .buttons button{
+    height: 50px;
+  }
+
 .button1 {
   background-color: #828282; 
   border: none;
-  color: #fff; 
   padding: 10px 20px; 
   cursor: pointer;
   position: relative; 
   overflow: hidden; 
+  z-index: 1;
+
+}
+.button1 span{
+  color: #fff !important;
 }
 
 
@@ -191,8 +199,14 @@
   height: 100%; 
   background-color: #424442; 
   transition: right 0.4s ease; 
-  color: #fff !important;
-
+  color: #000 !important;
+}
+/* .button1 span::after{
+  color: #000 !important;
+} */
+.button1 span, .button2 span {
+  position: relative;
+  z-index: 1; 
 }
 
 .button1:hover::after {
@@ -231,11 +245,6 @@
 }
 .button2:hover::before {
   transform: translate(-50%, -50%) scale(1); 
-}
-
-.button2 span {
-  position: relative;
-  z-index: 1; 
 }
 
 .pricing{
@@ -343,9 +352,9 @@ li{
 }
 hr{
   margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 1);
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgb(0 0 0 / 28%);
 }
 .end-max{
   display: flex;

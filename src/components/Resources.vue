@@ -17,7 +17,7 @@
                 <p></p>
                 <table>Email</table>
                 <input type="text" placeholder="Enter ypur email address" style="height: 25px; width: 85%;">
-                <button class="button2">Subscibe</button>
+                <button class="button2"><span>Subscibe</span></button>
             </div>
         </div>
         <nav class="nav">
@@ -152,7 +152,8 @@ nav {
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;    color: #333;
+    border-bottom: 1px solid #ccc;  
+    color: #333;
     font-size: 0.9em;
     color: #6c757d;
     text-transform: capitalize;
@@ -181,9 +182,6 @@ nav {
 
 
 
-
-
-
 .button2 {
   background-color: white; 
   margin-top: 10px;
@@ -195,6 +193,7 @@ nav {
   cursor: pointer;
   position: relative; 
   overflow: hidden;
+  z-index: 1;
 }
 .button2:hover {
   /* background-color: red;  */
@@ -219,6 +218,7 @@ nav {
 
 .button2 span {
   position: relative;
+  color: #000;
   z-index: 1; 
 }
 .end-max{
