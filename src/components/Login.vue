@@ -58,8 +58,7 @@ input{
 }
 
 .button2 {
-    justify-content: end;
-    text-align: end;
+  margin-left: 58%;
   /* height: 50px; */
   background-color: white; 
   border: 1px solid red; 

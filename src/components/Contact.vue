@@ -64,6 +64,10 @@
     </div>
 </template>
 <style scoped>
+.max{
+    padding-left: 5%;
+    padding-right: 4%;
+}
 .max, .right{
     display: flex;
     /* flex-direction: column; */
