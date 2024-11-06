@@ -59,7 +59,6 @@ input{
 
 .button2 {
   margin-left: 58%;
-  /* height: 50px; */
   background-color: white; 
   border: 1px solid red; 
   color: #000; 
