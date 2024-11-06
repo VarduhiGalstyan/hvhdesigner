@@ -106,7 +106,10 @@
   height: 290px;
 }
 span{
-  
+  margin-top: 40px;
+  display: block;
+  text-align: center;
+  font-size: 22px;
 }
 img{
   width: 100%;
