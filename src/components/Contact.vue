@@ -1,61 +1,72 @@
 <template>
     <div class="max">
         <div class="left">
+            <div class="imgs12">
+                <div class="imgs1">
+                   img1
+                </div>
+                <div class="imgs2">
+                   img2
+                </div>
+            </div>
             <div class="contact">
                 <h1>Contact HVH Team</h1>
                 <hr>
                 <p>Phone: 1(866)577-4040</p>
                 <p>email: info@hvhindustrial.com</p>
             </div>
-            <div class="imgs1">
-                img1
-            </div>
-            <div class="imgs2">
-                img2
-            </div>
         </div>
 
         <div class="right">
             <div class="submit">
-                <table>Your Name <span>*</span></table>
-                <input type="text" >
-                <p></p>
-                <table>E-Mail <span>*</span></table>
-                <input type="text" >
-                <p></p>
-                <table>Company</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>Address</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>City</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>State</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>Postal Code</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>Phone</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>Fex</table>
-                <input type="text"  placeholder="(optional)">
-                <p></p>
-                <table>Comments <span>*</span></table>
-                <input type="text"   style="height: 100px !important;">
-                <p></p>
-                <div class="recaptcha">
-                    cfgvhb
-                </div>
-                <p></p>
-                <div class="buttons">
-                    <button class="button1"><span>Clear From</span></button>
-                    <button class="button2"><span>Submit</span></button>
-                </div>
+                <div class="inputs">
+                    <table>Your Name <span>*</span></table>
+                    <input type="text" >
+                    <p v-if="errors.name" class="error-text">Your Name is required.</p>
+                    
+                    <table>E-Mail <span>*</span></table>
+                    <input type="email" v-model="form.email" :class="{'input-error': errors.email}">
+                    <p v-if="errors.email" class="error-text">Email is required or must be valid.</p>
 
+                    <table>Company</table>
+                    <input type="text" v-model="form.company"  placeholder="(optional)">
+                    <p></p>
+                    <table>Address</table>
+                    <input type="text" v-model="form.address"  placeholder="(optional)">
+                    <p></p>
+                    <table>City</table>
+                    <input type="text" v-model="form.city" placeholder="(optional)">
+                    <p></p>
+                    <table>State</table>
+                    <input type="text" v-model="form.state" placeholder="(optional)">
+                    <p></p>
+                    <table>Postal Code</table>
+                    <input type="text" v-model="form.postalCode"  placeholder="(optional)">
+                    <p></p>
+                    <table>Phone</table>
+                    <input type="text" v-model="form.phone" placeholder="(optional)">
+                    <p></p>
+                    <table>Fex</table>
+                    <input type="text" v-model="form.fax" placeholder="(optional)">
+                    <p></p>
+
+                    <table>Comments <span>*</span></table>
+                    <input type="text" v-model="form.comments" style="height: 100px !important;">
+                    <p v-if="errors.comments" class="error-text">Comments are required.</p>
+
+                    <div class="recaptcha">
+                        <div class="g-recaptcha" 
+                            :data-sitekey="siteKey" 
+                            @change="onRecaptchaChange">
+                        </div>
+                        <p v-if="errors.recaptcha" class="error-text">Please verify that you are not a robot.</p>
+                    </div>
+                    <p></p>
+                    <div class="buttons">
+                        <button class="button1" @click="clearForm"><span>Clear From</span></button>
+                        <button class="button2" @click="submitForm"><span>Submit</span></button>
+                    </div>
+                </div>
             </div>
             <div class="img">
                 img-right
@@ -63,57 +74,163 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        company: '',
+        address: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        phone: '',
+        fax: '',
+        comments: '',
+      },
+      errors: {
+        name: false,
+        email: false,
+        comments: false,
+      },
+    };
+  },
+  methods: {
+    submitForm(event) {
+      this.errors.name = false;
+      this.errors.email = false;
+      this.errors.comments = false;
+
+      let formIsValid = true;
+
+      if (!this.form.name) {
+        this.errors.name = true;
+      }
+
+      if (!this.form.email || !this.isValidEmail(this.form.email)) {
+        this.errors.email = true;
+      }
+
+      if (!this.form.comments) {
+        this.errors.comments = true;
+      }
+
+      if (!formIsValid) {
+        event.preventDefault(); // Ուղարկումը չեղարկում ենք
+        return;
+      }
+
+      // Եթե ամեն ինչ կարգին է, ֆորման ուղարկվում է
+      console.log('Form successfully submitted:', this.form);
+    },
+
+    isValidEmail(email) {
+      const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return re.test(email);
+    },
+    clearForm() {
+      this.form = {
+        name: '',
+        email: '',
+        company: '',
+        address: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        phone: '',
+        fax: '',
+        comments: '',
+      };
+      this.errors = {
+        name: false,
+        email: false,
+        comments: false,
+      };
+    }
+  }
+};
+</script>
+
+
 <style scoped>
-.max{
+.input-error {
+  border-color: red !important;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.max {
     padding-left: 5%;
     padding-right: 4%;
-}
-.max, .right{
     display: flex;
-    /* flex-direction: column; */
-    font-family: Arial, Helvetica, sans-serif;  
+    justify-content: space-between;
 }
-.left{
+
+.left {
+    width: 50%;  
+    display: flex;
+}
+
+.right {
+    width: 50%;  
+    display: flex;
+    gap: 10px;
+}
+.imgs12{
     display: flex;
     flex-direction: column;
-    /* max-width: 50%; */
+    width: 50%;
+    padding-top: 35%;
 }
-.contact{
-    text-align: left;
-    justify-content: end;
-}
-.imgs1, .imgs2{
-    padding-left: 5%;
-}
-h1{
+
+h1 {
     color: red;
     font-weight: 300;
 }
-hr{
+
+hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid rgb(0 0 0 / 28%);
+    border-top: 1px solid rgba(182, 180, 180, 0.28);
 }
-.submit{
+
+.submit {
     display: flex;
     flex-direction: column;
+    width: 60%;
+    border: 1px solid #e0dbdb;
 }
-p{
+.inputs{
+    padding: 20px;
+}
+
+p {
     font-weight: 200;
     color: #6c6c6c;
 }
-span{
+
+span {
     color: red;
 }
-input{
+
+input {
     border-right: none;
     border-left: 1px solid #000000;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #000000;  
     height: 30px;
+    width: 100%;
 }
-.recaptcha{
+
+.recaptcha {
     justify-content: end;
     height: 60px;
     background-color: #eceaea;
@@ -122,7 +239,7 @@ input{
 
 .buttons {
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px; 
   }
 
   .buttons button{
@@ -156,7 +273,7 @@ input{
   transition: right 0.4s ease; 
   color: #000 !important;
 }
-.button1 span, .button2 span {
+.button1 span {
   position: relative;
   z-index: 1; 
 }
@@ -165,20 +282,18 @@ input{
   right: 0; 
     color: #fff ;
 }
-.button2 span{
-    color: #000 ; 
-}
 .button2 {
   background-color: white; 
   border: 1px solid red; 
+  color: #000; 
   font-weight: 550;
   font-size: 14px;
   padding: 10px 20px; 
   cursor: pointer;
   position: relative; 
   overflow: hidden;
+  z-index: 1;
 }
-
 .button2:hover {
   /* background-color: red;  */
   color: white; 
@@ -200,5 +315,9 @@ input{
   transform: translate(-50%, -50%) scale(1); 
 }
 
-
+.button2 span {
+  position: relative;
+  color: #000;
+  z-index: 1; 
+}
 </style>

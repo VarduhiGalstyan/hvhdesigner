@@ -20,9 +20,22 @@
                 <button class="button2"><span>Subscibe</span></button>
             </div>
         </div>
+
         <nav class="nav">
             <div class="span">Filter by:</div>
-            <!-- <div>
+            <ul>   
+                <li :class="{ active: activeLink === 'all' }" @click="setActive('all')"  >All</li>
+                <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">Tutorials</li>
+                <li :class="{ active: activeLink === 'techtips' }" @click="setActive('techtips')">Tech Tips</li>
+                <li :class="{ active: activeLink === 'designtips' }" @click="setActive('designtips')">Design Tips</li>
+                <li :class="{ active: activeLink === 'onlinecourses' }" @click="setActive('onlinecourses')">Online Courses</li>
+                <li :class="{ active: activeLink === 'products' }" @click="setActive('products')">Products</li>
+            </ul>
+        </nav>
+
+        <!-- <nav class="nav">
+            <div class="span">Filter by:</div>
+            <div>
                 <button
                     v-for="(entry, index) in filterList"
                     :item="entry"
@@ -32,8 +45,8 @@
                 >
                     {{ entry }}
                 </button>
-            </div> -->
-            <!-- <ul class="userwrap">   
+            </div> 
+            < <ul class="userwrap">   
                 <li
                     v-for="(entry, index) in users"
                     v-if="entry[fkey] === filter || filter === 'All'"
@@ -46,8 +59,8 @@
                         Primary Language: <strong>{{ entry.mainLanguage }}</strong>
                     </span>
                 </li>
-            </ul> -->
-        </nav>
+            </ul>
+        </nav> -->
         <div class="end-max">
           <div class="end">
             <div class="step-img" style="margin-left: 20px;" >
@@ -133,7 +146,7 @@ span, .span{
 nav {
     flex-grow: 1; /* Allow nav to take the remaining space */
     justify-content: space-between;
-    /* display: flex; */
+    /* display: flex !important; */
   }
   
   nav ul {
