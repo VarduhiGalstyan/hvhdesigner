@@ -55,9 +55,8 @@
             <input type="text" v-model="form.comments" style="height: 100px !important;">
             <p v-if="errors.comments" class="error-text">Comments are required.</p>
             <p></p>
-            <div class="recaptcha">
-              <div class="g-recaptcha" :data-sitekey="siteKey" @change="onRecaptchaChange">Im not robot.</div>
-              <p v-if="errors.recaptcha" class="error-text">Please verify that you are not a robot.</p>
+            <div class="recaptcha" ref="recaptcha">
+            
             </div>
             <p></p>
             <div class="buttons">
@@ -94,17 +93,31 @@ export default {
         name: false,
         email: false,
         comments: false,
-        recaptcha: false,
       },
-      siteKey: 'your-recaptcha-site-key',  //  with your actual reCAPTCHA site key
+      key: '6LeM93UqAAAAANmkFsRO3_-8A75F5CiR4TrmOqtY',
+      reCaptchaLoaded: false,
     };
   },
+  mounted() {
+    this.loadRecaptcha();
+  },
   methods: {
+    loadRecaptcha() {
+      if (typeof grecaptcha !== 'undefined') {
+        grecaptcha.ready(() => {
+          grecaptcha.render(this.$refs.recaptcha, {
+            sitekey: this.key,
+          });
+          this.reCaptchaLoaded = true;
+        });
+      } else {
+        console.error('reCAPTCHA script not loaded.');
+      }
+    },
     submitForm() {
       this.errors.name = false;
       this.errors.email = false;
       this.errors.comments = false;
-      this.errors.recaptcha = false;
 
       let formIsValid = true;
 
@@ -120,6 +133,11 @@ export default {
 
       if (!this.form.comments) {
         this.errors.comments = true;
+        formIsValid = false;
+      }
+
+      if (!recaptchaResponse) {
+        alert('Please verify that you are not a robot.');
         formIsValid = false;
       }
 
@@ -152,17 +170,8 @@ export default {
         name: false,
         email: false,
         comments: false,
-        recaptcha: false,
       };
-    },
-
-    onRecaptchaChange(response) {
-      // Կարող եք այստեղ ստուգել reCAPTCHA-ի պատասխանները
-      if (!response) {
-        this.errors.recaptcha = true;
-      } else {
-        this.errors.recaptcha = false;
-      }
+      grecaptcha.reset();
     },
   },
 };
@@ -246,9 +255,8 @@ input {
 .recaptcha {
     justify-content: end;
     height: 60px;
-    padding-left: 45%;
-    /* background-color: #eceaea;
-    border: 1px solid #828282; */
+    padding-left: 38%;
+    padding-bottom: 10px;
 }
 .g-recaptcha{
   width: 100%;
