@@ -1,52 +1,64 @@
 <template>
-    <div class="max">
-        <div class="login">
-            <h1>Login</h1>
-            <table>Email or Login</table>
-            <input type="text">
-            <p></p>
-            <table>Password</table>
-            <input type="text">
-            <p></p>
-            <div class="remember-me">
-              <div>nishilu texy</div>
-              <span>Remember Me</span>
-            </div>
-            <div class="end">
-                <a href="#" style="color: red;">Forgot Your Password?</a>
-                <button class="button2">Login</button>
-            </div>
+   <div class="max">
+    <div class="login">
+      <h1>Login</h1>
+
+      <!-- <form @submit.prevent="login"> -->
+        <div>
+          <label for="Email-or-Login">Email or Login:</label>
+          <input type="text"  id="Email-or-Login" required />
+          <p></p>
         </div>
-        <div class="vidio">
-            vidiooooooo
+
+        <div>
+          <label for="password">Password:</label>
+          <input type="password"  id="password" required />
         </div>
+
+        <div style="display: flex; ">
+          <input type="checkbox" style="width: 5% !important;"/>
+          <div style="margin-top: 10px;"> Remember Me</div>
+        </div>
+
+        <div class="end">
+          <a href="#" style="color: red; font-weight: 700;">Forgot Your Password?</a>
+          <button type="submit" class="button2">Login</button>
+        </div>
+      <!-- </form> -->
     </div>
+    <div class="vidio">
+      vidiooooooo
+    </div>
+   </div>
 </template>
+
 <style scoped>
 .max{
     padding: 10px 20% 10% 22%;
+    width: 60%;
     text-align: justify;
     display: flex;
 }
 .login{
-    width: 50%;
+    width: 40%;
 }
 h1{
     text-align: center;
     color: red;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: capitalize;
 }
-table, span{
-    font-size: 16px;
+label, span{
+    /* font-size: 16px; */
+    font-weight: 700;
+    display: block;
+    text-align: start;
 }
 input{
-    border-top: 1px solid #000000;
-    border-right: 1px solid #000000;
-    border-bottom: 1px solid #b8b6b6;
-    border-left: 1px solid #6c6c6c;
+    border: 1px solid #000000;
+    border-radius: 5px;
     width: 100%;
-    height: 25px;
+    height: 30px;
 }
 .remember-me, .end{
     display: flex;
@@ -58,7 +70,7 @@ input{
 }
 
 .button2 {
-  margin-left: 58%;
+  margin-left: 46%;
   background-color: white; 
   border: 1px solid red; 
   color: #000; 

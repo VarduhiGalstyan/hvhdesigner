@@ -65,7 +65,7 @@
           <div class="end">
             <div class="step-img" style="margin-left: 20px;" >
               <img src="../assets/photo-1651197310.jpg" 
-              style="height: 150px !important; width: 230px !important; margin-top: 22%;" 
+              style="height: 150px !important; width: 300px !important; margin-top: 22%;" 
               alt="step-img">
             </div>
             <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
@@ -265,7 +265,7 @@ nav {
   text-decoration: underline;
 }
 .end{
-width: 290px;
+width: 360px;
   display: flex;
   flex-direction: column; 
   justify-content: center;
@@ -273,8 +273,8 @@ width: 290px;
 .step-img{
   justify-content: center;
     border: 1px solid #eee;
-    height: 250px;
-    width: 250px;
+    height: 280px;
+    /* width: 250px; */
     object-fit: cover;
     margin-bottom: 15px;
 }
