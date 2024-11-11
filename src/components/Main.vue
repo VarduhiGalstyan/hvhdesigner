@@ -41,7 +41,7 @@
     </div>
     <div class="pricing">
       <div class="procong-name">Procong</div>
-      <div class="windows">
+      <div class="windows wss">
         <div class="window">
           <span class="name">Free</span>
           <p></p>
@@ -66,7 +66,7 @@
           <button class="button2"><span>Buy now</span></button>
         </div>
       </div>
-      <div class="windows">
+      <div class="windows ws">
         <div class="windows-img"> 
           <img src="../assets/1593812195566_1651022973.jpg" alt="image" style="float: left; height: 423px; max-width: 500px;">
         </div>
@@ -86,7 +86,7 @@
           </ul>
         </div>
       </div>
-      <div class="windows">
+      <div class="windows ws">
         <div class="windows-information1">
           <h1 >What you can do with HVH Designer</h1>
           <ul>
@@ -176,12 +176,16 @@
 
 .button1 {
   background-color: #828282; 
+  width: 205px;
   border: none;
-  padding: 10px 20px; 
+  padding: 14px; 
   cursor: pointer;
   position: relative; 
   overflow: hidden; 
   z-index: 1;
+  font-size: 15px;
+  font-weight: 600;
+
 
 }
 .button1 span{
@@ -219,8 +223,9 @@
   border: 1px solid red; 
   color: #000; 
   font-weight: 550;
+  width: 180px;
   font-size: 14px;
-  padding: 10px 20px; 
+  padding: 14px; 
   cursor: pointer;
   position: relative; 
   overflow: hidden;
@@ -259,14 +264,15 @@
   padding-bottom: 5px;
   font-size: 26px;
   font-weight: 700;
-  margin-left: 12%;
+  margin-left: 150px;
 }
 .windows{
   display: flex;
   padding: 1%;
 }
 .window{
-  max-width: 35%; 
+  /* max-width: 35%;  */
+  width: 35%;
   /* padding-right: 10px; */
   padding:5%;
   cursor: pointer;
@@ -407,6 +413,117 @@ width: 360px;
     max-width: 100%;
     vertical-align: middle;
     border-style: none;
+}
+
+@media only screen and (max-width: 1340px){
+  .procong-name{
+    margin-left: 220px;
+  }
+}
+
+@media only screen and (max-width: 1200px){
+  main{
+    padding: 0;
+  }
+
+  .start{
+    padding: 10px 20% 10% 22%;
+
+  }
+  
+
+  .ws{
+    padding: 10px 20% 10% 22%;
+
+  }
+  .wss{
+    padding: 0 150px 0 10px;
+  }
+  .procong-name{
+    padding-top: 0;
+  }
+
+  hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin:  0 0 20px 22%;
+    border: 0;
+    border-top: 1px solid rgb(0 0 0 / 28%);
+  }
+  .end-max{
+    margin-left: 20%;
+  }
+  .procong-name{
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 877px){
+  .wss{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20% 10% 22%;
+
+  }
+  .procong-name{
+    margin-left: 50px;
+  }
+  .end-max{
+    margin-left: 35%;
+  }
+}
+@media only screen and (max-width: 767px){
+  .start{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .start{
+    padding: 0 0 5px 10%;
+  }
+  .start-text{
+     max-width: 90%; 
+ }
+  .start-img img{
+    margin-left: 0 !important;
+    width: 80%;
+    padding: 0 20px;
+  }
+  .wss{
+    margin: 0 20px;
+  }
+  .procong-name{
+    margin-top: 7%;
+  }
+  .ws{
+    padding: 0;
+    margin-left: 0;
+  }
+  .windows-information1{
+    max-width: 45%;
+  }
+  .windows-img2 img{
+    width: 250px !important;
+    height: 250px !important;
+    padding-top: 50px;
+  }
+}
+  @media only screen and (max-width: 575px){
+  .ws{
+    display: flex;
+    flex-direction: column;
+  }
+  .windows-img, .windows-information1{
+    max-width: 900px;
+  }
+  .windows-img2 img{
+    float: left !important;
+    height: 350px !important;
+    width: 350px !important;
+    padding-left: 20px !important;
+  }
+  .end-max{
+    margin-left: 20% !important;
+  }
 }
 
 </style>
