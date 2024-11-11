@@ -1,76 +1,79 @@
-<template>
-  <div class="max">
-    <div class="left">
-      <div class="imgs12">
-        <div class="imgs1">
-          img1
-        </div>
-        <div class="imgs2">
-          img2
-        </div>
-      </div>
-      <div class="contact">
-        <h1>Contact HVH Team</h1>
-        <hr>
-        <p>Phone: 1(866)577-4040</p>
-        <p>email: info@hvhindustrial.com</p>
-      </div>
-    </div>
+<template >
+  <div class="img">
 
-    <div class="right">
-      <div class="submit">
-        <form @submit.prevent="submitForm">
-          <div class="inputs">
-            <table>Your Name <span>*</span></table>
-            <input type="text" v-model="form.name" :class="{'input-error': errors.name}">
-            <p v-if="errors.name" class="error-text">Your Name is required.</p>
-            
-            <table>E-Mail <span>*</span></table>
-            <input type="email" v-model="form.email" :class="{'input-error': errors.email}">
-            <p v-if="errors.email" class="error-text">Email is required or must be valid.</p>
-
-            <table>Company</table>
-            <input type="text" v-model="form.company" placeholder="(optional)">
-            <p></p>
-            <table>Address</table>
-            <input type="text" v-model="form.address" placeholder="(optional)">
-            <p></p>
-            <table>City</table>
-            <input type="text" v-model="form.city" placeholder="(optional)">
-            <p></p>
-            <table>State</table>
-            <input type="text" v-model="form.state" placeholder="(optional)">
-            <p></p>
-            <table>Postal Code</table>
-            <input type="text" v-model="form.postalCode" placeholder="(optional)">
-            <p></p>
-            <table>Phone</table>
-            <input type="text" v-model="form.phone" placeholder="(optional)">
-            <p></p>
-            <table>Fax</table>
-            <input type="text" v-model="form.fax" placeholder="(optional)">
-            <p></p>
-
-            <table>Comments <span>*</span></table>
-            <input type="text" v-model="form.comments" style="height: 100px !important;">
-            <p v-if="errors.comments" class="error-text">Comments are required.</p>
-            <p></p>
-            <div class="recaptcha" ref="recaptcha">
-            
-            </div>
-            <p></p>
-            <div class="buttons">
-              <button type="button" class="button1" @click="clearForm"><span>Clear Form</span></button>
-              <button type="submit" class="button2"><span>Submit</span></button>
-            </div>
+    <div class="max">
+      <div class="left">
+        <!-- <div class="imgs12">
+          <div class="imgs1">
+            img1
           </div>
-        </form>
+          <div class="imgs2">
+            img2
+          </div>
+        </div> -->
+        <!-- <div> -->
+          <h1>Contact HVH Team</h1>
+          <hr>
+          <p>Phone: 1(866)577-4040</p>
+          <p>email: info@hvhindustrial.com</p>
+        <!-- </div> -->
       </div>
-      <div class="img">
-        img-right
+
+      <div class="right">
+        <div class="submit">
+          <form @submit.prevent="submitForm">
+            <div class="inputs">
+              <table>Your Name <span>*</span></table>
+              <input type="text" v-model="form.name" :class="{'input-error': errors.name}">
+              <p v-if="errors.name" class="error-text">Your Name is required.</p>
+              
+              <table>E-Mail <span>*</span></table>
+              <input type="email" v-model="form.email" :class="{'input-error': errors.email}">
+              <p v-if="errors.email" class="error-text">Email is required or must be valid.</p>
+
+              <table>Company</table>
+              <input type="text" v-model="form.company" placeholder="(optional)">
+              <p></p>
+              <table>Address</table>
+              <input type="text" v-model="form.address" placeholder="(optional)">
+              <p></p>
+              <table>City</table>
+              <input type="text" v-model="form.city" placeholder="(optional)">
+              <p></p>
+              <table>State</table>
+              <input type="text" v-model="form.state" placeholder="(optional)">
+              <p></p>
+              <table>Postal Code</table>
+              <input type="text" v-model="form.postalCode" placeholder="(optional)">
+              <p></p>
+              <table>Phone</table>
+              <input type="text" v-model="form.phone" placeholder="(optional)">
+              <p></p>
+              <table>Fax</table>
+              <input type="text" v-model="form.fax" placeholder="(optional)">
+              <p></p>
+
+              <table>Comments <span>*</span></table>
+              <input type="text" v-model="form.comments" style="height: 100px !important;">
+              <p v-if="errors.comments" class="error-text">Comments are required.</p>
+              <p></p>
+              <div class="recaptcha" ref="recaptcha">
+              
+              </div>
+              <p></p>
+              <div class="buttons">
+                <button type="button" class="button1" @click="clearForm"><span>Clear Form</span></button>
+                <button type="submit" class="button2"><span>Submit</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="img">
+          img-right
+        </div> -->
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -178,6 +181,11 @@ export default {
 </script>
 
 <style scoped>
+.img{
+  background-image: url('@/assets/background.png');
+
+
+}
 .input-error {
   border-color: red !important;
 }
@@ -189,28 +197,31 @@ export default {
 }
 
 .max {
-    padding-left: 5%;
-    padding-right: 4%;
-    display: flex;
-    justify-content: space-between;
+  padding: 10px 5% 10% 22%;
+  text-align: justify;
+  display: flex;
+    /* flex-direction: column;  */
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 30px;
 }
 
 .left {
     width: 50%;  
     display: flex;
+    flex-direction: column;
 }
 
 .right {
-    width: 50%;  
+    width: 100%;  
     display: flex;
     gap: 10px;
 }
-.imgs12{
+/* .imgs12{
     display: flex;
     flex-direction: column;
     width: 50%;
     padding-top: 35%;
-}
+} */
 
 h1 {
     color: red;
@@ -220,6 +231,7 @@ h1 {
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    width: 100%;
     border: 0;
     border-top: 1px solid rgba(182, 180, 180, 0.28);
 }
