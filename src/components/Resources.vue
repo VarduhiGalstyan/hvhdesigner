@@ -67,7 +67,11 @@
           <div class="end">
             <div class="step-img" style="margin-left: 20px;" >
               <img src="../assets/photo-1651197310.jpg" 
-              style="height: 150px !important; width: 300px !important; margin-top: 22%;" 
+              style="
+                height: 80% !important;
+                width: 80% !important;
+                margin-top: 30px;
+                margin-left: 10%;" 
               alt="step-img">
             </div>
             <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
@@ -400,6 +404,20 @@ width: 360px;
 
   .resources-top-left img{
     margin-left: 0;
+  }
+}
+@media only screen and (max-width: 877px){
+  .end-max{
+    padding-top: 30px;
+  }
+  .step-img{
+    width: 93%;
+  }
+  .end-max{
+    margin-left: 5%;
+  }
+  .end{
+    width: 100%;
   }
 }
 
