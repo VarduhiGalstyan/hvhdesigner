@@ -1,8 +1,8 @@
 <template>
     <div class="resources-max">
         <div class="resources-top">
-            <img src="../assets/photo-1651197310.jpg" 
-              style="height: 130px !important; width: 260px !important; padding-left: 5%; padding-top: 10px;" 
+          <div class="resources-top-left">
+             <img src="../assets/photo-1651197310.jpg"  
               alt="step-img">      
             <div class="center">
                 <h1>What is a STEP File Format</h1>
@@ -10,6 +10,8 @@
                     STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
                 </span>
             </div>
+          </div>
+           
             <div  class="resources-top-right">
                 <span>Get the latest news delivered to your inbox</span>
                 <p></p>
@@ -107,6 +109,17 @@ export default {
 </script> -->
 
 <style scoped>
+
+.resources-top-left img{
+  height: 200px !important;
+  width: 330px !important; 
+  padding-left: 5%; 
+  padding-top: 10px;
+}
+
+.resources-top-left{
+  display: flex;
+}
 button{
     background-color: #fff;
 }
@@ -116,7 +129,7 @@ button{
 .resources-max{
     display: flex;
     flex-direction: column; 
-    padding: 10px 18% 10% 22%;
+    padding: 10px 10% 10% 22%;
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;    
 }
@@ -124,7 +137,7 @@ button{
     display: flex;
 }
 .center{
-    width: 30%;
+    width: 340px;
     padding-left: 7%;
 }
 .center h1{
@@ -286,4 +299,110 @@ width: 360px;
     vertical-align: middle;
     border-style: none;
 }
+@media only screen and (max-width: 1757px){
+  .resources-max{
+    display: flex;
+    flex-direction: column; 
+    padding: 10px 10% 10% 15%;
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;    
+  }
+}
+@media only screen and (max-width: 1650px){
+  .center{
+    padding-left: 0;
+    width: 370px;
+  }
+
+}
+@media only screen and (max-width: 1600px){
+  .resources-top img{
+    padding-left: 0 !important;
+  }
+  .resources-top-right{
+    padding-left: 4%;
+  }
+  .center{
+    width: 340px;
+  }
+}
+
+@media only screen and (max-width: 1553px){
+  .resources-top-right{
+    padding-left: 3%;
+  }
+}
+
+@media only screen and (max-width: 1370px){
+  .resources-max{
+    padding: 10px 10% 10% 5%;
+  }
+  
+}
+@media only screen and (max-width: 1280px){
+  .resources-max{
+    padding-left: 0;
+  }
+.resources-top-left{
+  display:  flex;
+  flex-direction: column;
+  padding: 40px 25px 40px 0;
+  width: 65%;
+}
+.center{
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.resources-top-left img{
+  height: 250px !important;
+  width: 500px !important;
+    margin-left: 17%;
+}
+.resources-top-right{
+  padding-top: 60px;
+
+}
+.resources-top-right span{
+  font-size: 18px;
+}
+.nav, .end-max{
+  padding-left: 5%;
+
+}
+}
+@media only screen and (max-width: 1280px){
+.resources-top-left img{
+  margin-left: 12%;
+}
+}
+@media only screen and (max-width: 888px){
+  .resources-top-left img{
+    margin-left: 5%;
+  }
+}
+@media only screen and (max-width: 767px){
+  .resources-top{
+    display: flex;
+    flex-direction: column;
+  }
+  .resources-top-left{
+    width: 100%;
+  }
+  .resources-top-left img{
+    margin-left: 15%;
+  }
+  .nav{
+    padding-top: 30px;
+  }
+}
+@media only screen and (max-width: 611px){
+
+  .resources-top-left img{
+    margin-left: 0;
+  }
+}
+
+
+
 </style>

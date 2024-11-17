@@ -11,27 +11,42 @@
             </div>
             
             <nav class="nav">
-                <ul>
-                  
-                    <li :class="{ active: activeLink === '3dParts' }" @click="setActive('3dParts')"  >3D Parts</li>
+                <ul v-show="!menuVisible">
+                    <li :class="{ active: activeLink === '3dParts' }" @click="setActive('3dParts')"  style="width: max-content;">3D Parts</li>
                     <li :class="{ active: activeLink === 'brands' }" @click="setActive('brands')">brands</li>
                     <li :class="{ active: activeLink === 'resources' }" @click="setActive('resources')">resources</li>
                     <li :class="{ active: activeLink === 'faq' }" @click="setActive('faq')">faq</li>
                     <li :class="{ active: activeLink === 'contact' }" @click="setActive('contact')">contact</li>
                 </ul>
+
+                <div class="hamburger" @click="toggleMenu">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </div>
+
+              <ul v-show="menuVisible" class="mobile-menu">
+                <li :class="{ active: activeLink === '3dParts' }" @click="setActive('3dParts')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">3D Parts</li>
+                <li :class="{ active: activeLink === 'brands' }" @click="setActive('brands')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">brands</li>
+                <li :class="{ active: activeLink === 'resources' }" @click="setActive('resources')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">resources</li>
+                <li :class="{ active: activeLink === 'faq' }" @click="setActive('faq')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">faq</li>
+                <li :class="{ active: activeLink === 'contact' }" @click="setActive('contact')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">contact</li>
+                <li :class="{ active: activeLink === 'login' }" @click="setActive('login')" style=" border-bottom: 1px solid #7973731f; margin-left: 0;">Login</li>
+                <li :class="{ active: activeLink === 'register' }" @click="setActive('register')" >Register</li>
+              </ul>
             </nav>
-            <div class="log-reg">
-                <nav class="LoginRegister">
-                  <!-- <ul> -->
-                    <li class="login" 
+            <div class="log-reg" >
+                <nav class="LoginRegister" >
+                  <ul>
+                    <li  class="login" 
                       :class="{ active: activeLink === 'login' }" 
-                      @click="setActive('login')">Login
+                      @click="setActive('login')" >Login
                     </li>
                     <li class="register" 
                       :class="{ active: activeLink === 'register' }">
                         Register
                     </li>
-                  <!-- </ul> -->
+                  </ul>
                 </nav>
             </div>
             
@@ -44,11 +59,13 @@
     data() {
       return {
         activeLink: '',
+        menuVisible: false,
       };
     },
     methods: {
       setActive(link) {
         this.activeLink = link;
+        this.menuVisible = false;
       },
       setActive(link) {
         if (link === '3dParts') {
@@ -74,6 +91,9 @@
           this.$router.push('/login');
         } 
       },
+      toggleMenu(){
+        this.menuVisible = !this.menuVisible;
+      }
     },
   };
   </script>
@@ -91,6 +111,7 @@
     align-items: center;
     position: relative;
     display: flex;
+    box-shadow: 1px 1px 8px #afa7a7e0, 0 6px 20px #8c85851f !important;
     /* display: flex;
     align-items: center; */
     /* padding-left: 20px; */
@@ -119,7 +140,7 @@
   }
   
   nav {
-    flex-grow: 1; /* Allow nav to take the remaining space */
+    /* flex-grow: 1; */
     justify-content: space-between;
   }
   
@@ -137,11 +158,11 @@
   nav li {
     border-right: 1px solid #ccc;
     color: #333;
-    font-size: 1.2em;
+    font-size: 1.15em;
     line-height: 1em;
     color: #333;
     text-transform: uppercase;
-    padding: 2% 10px 2% 1px;
+    padding: 2% 10px 2% 0;
     display: block;
     float: none;
     height: auto !important;   
@@ -157,7 +178,7 @@
 }
   
   .log-reg{
-    padding-left: 6%;
+    padding-left: 13%;
   }
   .LoginRegister{
     margin-left: 20px;
@@ -168,6 +189,54 @@
     height: 50px;
     display: flex !important;
   }
+  .hamburger {
+    background-color: #333;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    float: right;
+    padding: 7px 10px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: -20px;
+    margin-left: 80%;
+    cursor: pointer;  
+    justify-content: space-between;
+    position: absolute;
+}
+
+.icon-bar {
+  background-color: #fff;
+    border-radius: 1px;
+    display: block;
+    height: 2px;
+    margin: 3px 0;
+    width: 22px;
+}
+
+.mobile-menu {
+  align-items: start;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: absolute;
+    width: 100%;
+    z-index: 9;
+    
+    background: #fff;
+    box-shadow: 1px 1px 8px #afa7a7e0, 0 6px 20px #8d86861f;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 10%;
+    height: max-content;
+    width: 60%;
+
+    margin-top: -25px;
+}
   .login{
     list-style: none;
     text-transform: none  !important;
@@ -200,6 +269,61 @@
   li:hover {
     color: red;
   } 
-  
+  @media only screen and (max-width: 1111px){
+    .log-reg{
+      padding-left: 5% !important;
+    }
+  }
+  @media only screen and (max-width: 980px){
+  nav li{
+    font-size: 1em;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+  .log-reg
+  {
+    padding-left: 5%;
+  }
+  .LoginRegister{
+    height: 60px;
+    font-size: 1.2em;
+  }
+  nav ul{
+    padding-left: 1px;
+  }
+  }
+  @media only screen and (min-width: 768px){
+    .hamburger{
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 768px){
+    .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .log-reg {
+    padding-left: 5%;
+  }
+
+  .LoginRegister {
+    height: 60px;
+    font-size: 1.2em;
+  }
+  .header-image{
+    height: 50px;
+    
+  }
+  } 
+
 </style>
   

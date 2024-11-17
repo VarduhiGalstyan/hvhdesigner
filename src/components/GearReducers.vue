@@ -115,6 +115,9 @@ img{
   width: 100%;
   height: 150px;
 }
+@media only screen and (max-width: 1200px){
+  
+}
 </style>
 
 

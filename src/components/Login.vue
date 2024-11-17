@@ -21,7 +21,7 @@
         </div>
 
         <div class="end">
-          <a href="#" style="color: red; font-weight: 700;">Forgot Your Password?</a>
+          <a href="#" style="color: red; font-weight: 700;     width: 500px;">Forgot Your Password?</a>
           <button type="submit" class="button2">Login</button>
         </div>
       <!-- </form> -->
@@ -35,7 +35,7 @@
 <style scoped>
 .max{
     padding: 10px 20% 10% 22%;
-    width: 60%;
+    width: 1150px;
     text-align: justify;
     display: flex;
 }
@@ -76,10 +76,11 @@ input{
   color: #000; 
   font-weight: 550;
   font-size: 14px;
-  padding: 10px 20px; 
+  padding: 14px 35px; 
   cursor: pointer;
   position: relative; 
   overflow: hidden;
+  width: 180px;
 }
 
 .button2:hover {
@@ -101,5 +102,84 @@ input{
 .button2:hover::before {
   transform: translate(-50%, -50%) scale(1); 
 }
+@media only screen and (max-width: 1669px){
 
+
+}
+@media only screen and (max-width: 1669px){
+.max{
+  padding: 10px 20% 10% 18%;
+}
+}
+@media only screen and (max-width: 1362px){
+.max{
+  padding: 10px 20% 10% 14%;
+}
+}
+@media only screen and (max-width: 1239px){
+.max{
+  padding: 10px 20% 10% 8%;
+}
+}
+@media only screen and (max-width: 1200px){
+.max{
+  padding: 10px 20% 10% 14%;
+  width: 950px;
+}
+.button2{
+  margin-left: 25%;
+}
+}
+@media only screen and (max-width: 1135px){
+.max{
+  padding: 10px 20% 10% 10%;
+}
+}
+@media only screen and (max-width: 1053px){
+.max{
+  padding: 10px 20% 10% 4%;
+}
+}
+@media only screen and (max-width: 1053px){
+.max{
+  padding: 10px 20% 10% 4%;
+}
+}
+@media only screen and (max-width: 991px){
+.max{
+  padding: 10px 20% 10% 14%;
+  width: 620px;
+
+}
+.button2{
+  margin-left: 30%;
+}
+}
+@media only screen and (max-width: 793px){
+.max{
+  padding: 10px 20% 10% 10%;
+
+}
+}
+@media only screen and (max-width: 768px){
+.max{
+  padding: 10px 20% 10% 10%;
+  width: 1350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.button2{
+  margin-left: 50%;
+}
+}
+@media only screen and (max-width: 651px){
+.max{
+  padding-left: 10px;
+  width: 1150px;
+}
+.button2{
+  margin-left: 10px;
+}
+}
 </style>
