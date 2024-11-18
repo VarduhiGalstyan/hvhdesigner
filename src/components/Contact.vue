@@ -60,6 +60,13 @@
               <div class="recaptcha" ref="recaptcha">
               
               </div>
+              <p v-if="recaptchaError" class="error-text recaptcha" 
+                style="
+                  height: 5px !important;
+                  color: #a94442 !important;
+                  font-weight: bolder;
+                  line-height: normal;
+                ">Please ensure that you are a human!</p>
               <p></p>
               <div class="buttons">
                 <button type="button" class="button1" @click="clearForm"><span>Clear Form</span></button>
@@ -97,6 +104,7 @@ export default {
         email: false,
         comments: false,
       },
+      recaptchaError: false,
       key: '6LeM93UqAAAAANmkFsRO3_-8A75F5CiR4TrmOqtY',
       reCaptchaLoaded: false,
     };
@@ -121,6 +129,7 @@ export default {
       this.errors.name = false;
       this.errors.email = false;
       this.errors.comments = false;
+      this.recaptchaError = false; 
 
       let formIsValid = true;
 
@@ -139,8 +148,9 @@ export default {
         formIsValid = false;
       }
 
+      const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
-        alert('Please verify that you are not a robot.');
+        this.recaptchaError = true; 
         formIsValid = false;
       }
 

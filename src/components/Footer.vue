@@ -318,7 +318,7 @@ p{
     margin-bottom: 35px;
   }
 }
-@media only screen and (min-width: 1110px){
+@media only screen and (max-width: 1105px){
   .down-left{
     margin-left: 10%;
   }

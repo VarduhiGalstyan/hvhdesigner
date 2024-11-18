@@ -1,21 +1,21 @@
 <template>
     <div class="maxs">
-        <div class="max">
+        <div class="max max1">
             <div class="max-left">
                 <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam.\Maecenas metus.</span>
                 <span>Vivamus diam purus, cursus a, commodo non, facilisis vi</span>
             </div>
             <div>
-                <img src="" alt="img-top" style="width: 600px;height: 450px;">
+                <img src="../assets/aboutImg.jpg" alt="img-top" >
             </div>
         </div>
-        <div class="max">
+        <div class="max max2">
             <div class="max-left-img">
-                <img src="" alt="img-top" style="width: 600px;height: 450px;">   
+                <img src="../assets/aboutImg.jpg" alt="img-top" >   
             </div>
             <div class="max-right">
-                <span style="padding-bottom: 5px !important;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span>
-                <span> Maecenas feugiat consequat diam.\Maecenas metus.</span>
+                <span style="padding-bottom: 5px !important;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Maecenas feugiat consequat diam.\Maecenas metus.</span>
+                <!-- <span> Maecenas feugiat consequat diam.\Maecenas metus.</span> -->
                 <span> Vivamus diam purus, cursus a, commodo non, facilisis vi</span>
             </div>
         </div>
@@ -62,11 +62,9 @@
 .max-left{
     padding-top: 10%;
     width: 50%;
-    height: 500px;
 }
 .max-left-img{
     width: 50%;
-    height: 500px;
 }
 
 span{
@@ -78,7 +76,6 @@ span{
 .max-right{
     display: block;
     text-align: end;
-    margin-top: 7%;
 }
 hr{
     width: 100%;
@@ -140,5 +137,48 @@ width: 360px;
     vertical-align: middle;
     border-style: none;
 }
+@media only screen and (min-width: 1700px){
+  .max-left{
+    height: 500px;
+  }
+  .max-left div img{
+    /* height: 450px;
+    width: 600px;*/ 
+    }
+    .max-right {
+    margin-top: 7%;
+  }
+  .max-right span{
+    width: 450px;
 
+  }
+}
+@media only screen and (max-width: 1700px){
+  .maxs{
+    padding: 10px 10% 4% 12%;
+  }
+  .max1{
+    flex-direction: column-reverse;
+  }
+  .max-left, .max-right span{
+    width: 100%;
+    padding-top: 3%;
+  }
+  
+  .max div img, .max-left-img{
+    width: 100%;
+  }
+  .max2{
+    flex-direction: column;
+  }
+  .max-right span{
+    padding-top: 1%;
+
+  }
+}
+@media only screen and (max-width: 1060px){
+  .maxs{
+    padding: 10px 0 4% 0;
+  }
+}
 </style>

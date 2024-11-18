@@ -1,116 +1,115 @@
 <template>
-    <div class="resources-max">
-        <div class="resources-top">
-          <div class="resources-top-left">
-             <img src="../assets/photo-1651197310.jpg"  
-              alt="step-img">      
-            <div class="center">
-                <h1>What is a STEP File Format</h1>
-                <span>
-                    STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
-                </span>
-            </div>
-          </div>
-           
-            <div  class="resources-top-right">
-                <span>Get the latest news delivered to your inbox</span>
-                <p></p>
-                <span style="color: #000000 !important; ">Insights twice a month</span>
-                <p></p>
-                <table>Email</table>
-                <input type="text" placeholder="Enter ypur email address" style="height: 25px; width: 85%;">
-                <button class="button2"><span>Subscibe</span></button>
-            </div>
+  <div class="resources-max">
+    <div class="resources-top">
+      <div class="resources-top-left">
+        <img src="../assets/photo-1651197310.jpg" alt="step-img" />
+        <div class="center">
+          <h1>What is a STEP File Format</h1>
+          <span>
+            STEP files, also known as ISO 10303, are an ISO standard exchange
+            format. The letters "STEP" stands for “Standard for the Exchange of
+            Product Data
+          </span>
         </div>
+      </div>
 
-        <nav class="nav">
-            <div class="span">Filter by:</div>
-            <ul>   
-                <li :class="{ active: activeLink === 'all' }" @click="setActive('all')"  >All</li>
-                <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">Tutorials</li>
-                <li :class="{ active: activeLink === 'techtips' }" @click="setActive('techtips')">Tech Tips</li>
-                <li :class="{ active: activeLink === 'designtips' }" @click="setActive('designtips')">Design Tips</li>
-                <li :class="{ active: activeLink === 'onlinecourses' }" @click="setActive('onlinecourses')">Online Courses</li>
-                <li :class="{ active: activeLink === 'products' }" @click="setActive('products')">Products</li>
-            </ul>
-        </nav>
-
-        <!-- <nav class="nav">
-            <div class="span">Filter by:</div>
-            <div>
-                <button
-                    v-for="(entry, index) in filterList"
-                    :item="entry"
-                    :key="index"
-                    @click="filter = entry; active = index;"
-                    :class="{ active: entry == filter }"
-                >
-                    {{ entry }}
-                </button>
-            </div> 
-            < <ul class="userwrap">   
-                <li
-                    v-for="(entry, index) in users"
-                    v-if="entry[fkey] === filter || filter === 'All'"
-                    :item="entry"
-                    :key="index"
-                    class="user"
-                >
-                    <h2 class="title">{{ entry.name }}</h2>
-                    <span class="language">
-                        Primary Language: <strong>{{ entry.mainLanguage }}</strong>
-                    </span>
-                </li>
-            </ul>
-        </nav> -->
-        <div class="end-max">
-          <div class="end">
-            <div class="step-img" style="margin-left: 20px;" >
-              <img src="../assets/photo-1651197310.jpg" 
-              style="
-                height: 80% !important;
-                width: 80% !important;
-                margin-top: 30px;
-                margin-left: 10%;" 
-              alt="step-img">
-            </div>
-            <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
-                <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
-                  <span style="color: red !important;">
-                    What is a STEP File Format
-                  </span>
-                  <p></p>
-                  <span style="color: #6c757d !important;">
-                    STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data
-                  </span>
-                </a>
-            </div>
-          </div>
-            <!-- <div></div> -->
-        </div>
+      <div class="resources-top-right">
+        <span>Get the latest news delivered to your inbox</span>
+        <p></p>
+        <span style="color: #000000 !important;">Insights twice a month</span>
+        <p></p>
+        <table>Email</table>
+        <input
+          v-model="email" 
+          type="text"
+          placeholder="Enter your email address"
+          style="height: 25px; width: 85%;"
+        />
+        <!-- Սխալ հաղորդագրությունը -->
+        <p v-if="errorMessage" style="color: #a94442 !important; line-height: normal; height: 1px;;">
+          {{ errorMessage }}
+        </p>
+        <p></p>
+        <button class="button2" @click="handleSubscribe">
+          <span>Subscribe</span>
+        </button>
+      </div>
     </div>
+
+    <nav class="nav">
+      <div class="span">Filter by:</div>
+      <ul>
+        <li :class="{ active: activeLink === 'all' }" @click="setActive('all')">
+          All
+        </li>
+        <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">
+          Tutorials
+        </li>
+        <li :class="{ active: activeLink === 'techtips' }" @click="setActive('techtips')">
+          Tech Tips
+        </li>
+        <li :class="{ active: activeLink === 'designtips' }" @click="setActive('designtips')">
+          Design Tips
+        </li>
+        <li :class="{ active: activeLink === 'onlinecourses' }" @click="setActive('onlinecourses')">
+          Online Courses
+        </li>
+        <li :class="{ active: activeLink === 'products' }" @click="setActive('products')">
+          Products
+        </li>
+      </ul>
+    </nav>
+
+    <div class="end-max">
+      <div class="end">
+        <div class="step-img" style="margin-left: 20px;">
+          <img
+            src="../assets/photo-1651197310.jpg"
+            style="height: 80% !important; width: 80% !important; margin-top: 30px; margin-left: 10%;"
+            alt="step-img"
+          />
+        </div>
+        <div class="end-information" style="padding: 20px; height: 510px; overflow: hidden; text-align: center;">
+          <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
+            <span style="color: red !important;">What is a STEP File Format</span>
+            <span style="color: #6c757d !important;">
+              STEP files, also known as ISO 10303, are an ISO standard exchange
+              format. The letters "STEP" stands for “Standard for the Exchange of
+              Product Data
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<!-- <script>
+<script>
 export default {
-  name: "DataDisplay",
-  data: function() {
+  data() {
     return {
-      fkey: "mainLanguage",
-      filterList: [ "All", "Tutorials", "Tech Tips", "Design Tips", "Online Courses", "Products"],
+      email: "", 
+      errorMessage: "", // email փոփոխական
+      activeLink: "all",
       filter: "All",
-      users: []
     };
   },
-  created() {
-    var apiURL = "https://next.json-generator.com/api/json/get/4JCnNiTCr";
-    fetch(apiURL)
-      .then(res => res.json())
-      .then(res => (this.users = res))
-      .catch(error => console.log(error));
-  }
+  methods: {
+    handleSubscribe() {
+      // Ստուգենք, եթե email-ը դատարկ է
+      if (!this.email) {
+        this.errorMessage = "The email field is required."; 
+      } else {
+        this.errorMessage = ""; 
+        console.log("Email submitted: " + this.email);
+      }
+    },
+    setActive(link) {
+      this.activeLink = link;
+    },
+  },
 };
-</script> -->
+</script>
 
 <style scoped>
 

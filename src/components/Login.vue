@@ -27,7 +27,10 @@
       <!-- </form> -->
     </div>
     <div class="vidio">
-      vidiooooooo
+      <video width="100%" height="240" controls>
+        <source src="@/assets/CoolCountdown10,9,8,7,6,5,4,3,2,1.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+      </video>
     </div>
    </div>
 </template>
@@ -38,6 +41,7 @@
     width: 1150px;
     text-align: justify;
     display: flex;
+    gap: 50px;
 }
 .login{
     width: 40%;

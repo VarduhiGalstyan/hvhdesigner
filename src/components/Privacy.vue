@@ -77,4 +77,24 @@ li{
     color: #77787b;
 }
 
+@media only screen and (max-width: 1650px){
+  .max{
+    padding: 10px 0 4% 15%;
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 1200px){
+  .max{
+    padding: 10px 0 4% 7%;
+    width: 85%;
+  }
+}
+
+
+@media only screen and (max-width: 1060px){
+  .max{
+    padding: 10px 0 4% 0;
+    width: 97%;
+  }
+}
 </style>
