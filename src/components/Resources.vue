@@ -14,6 +14,10 @@
       </div>
 
       <div class="resources-top-right">
+        <div style="display: flex; margin-bottom: 15px;">
+          <span class="class1"></span>
+          <span class="class2"></span>
+        </div>
         <span>Get the latest news delivered to your inbox</span>
         <p></p>
         <span style="color: #000000 !important;">Insights twice a month</span>
@@ -40,6 +44,7 @@
       <div class="span">Filter by:</div>
       <ul>
         <li :class="{ active: activeLink === 'all' }" @click="setActive('all')">
+          <i style="font-size:14px; margin-right: 5px;" class="fa">&#xf0c9;</i>
           All
         </li>
         <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">
@@ -72,6 +77,7 @@
         <div class="end-information" style="padding: 20px; height: 510px; overflow: hidden; text-align: center;">
           <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
             <span style="color: red !important;">What is a STEP File Format</span>
+            <p></p>
             <span style="color: #6c757d !important;">
               STEP files, also known as ISO 10303, are an ISO standard exchange
               format. The letters "STEP" stands for “Standard for the Exchange of
@@ -112,7 +118,23 @@ export default {
 </script>
 
 <style scoped>
-
+.class1{
+  background: #f9f9f9;
+    border-radius: 8px;
+    height: 7px;
+    margin-left: 15px;
+    width: 40%;
+}
+.class2{
+  background: red;
+    border-radius: 50%;
+    height: 7px;
+    margin-left: 11px;
+    width: 7px;
+}
+img{
+  object-fit: cover;
+}
 .resources-top-left img{
   height: 200px !important;
   width: 330px !important; 
@@ -130,9 +152,10 @@ button{
     display: flex;
 }
 .resources-max{
+  
     display: flex;
     flex-direction: column; 
-    padding: 10px 10% 10% 22%;
+    padding: 80px 10% 10% 22%;
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;    
 }
@@ -154,15 +177,18 @@ span, .span{
     font-weight: 500;
     color: #6c757d;
     line-height: 1.6;
+    
+}
+.span{
+  padding-top: 24px;
 }
 .resources-top-right{
     padding-left: 7%;
     
 }
 nav {
-    flex-grow: 1; /* Allow nav to take the remaining space */
-    justify-content: space-between;
-    /* display: flex !important; */
+    flex-grow: 1; 
+    display: flex;
   }
   
   nav ul {
@@ -171,31 +197,21 @@ nav {
     /* justify-content: space-between; */
     display: flex;
     list-style: none;
+    margin-left: -36px;
   }
   li:hover {
     color: red;
   } 
 
   nav li {
-
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;  
-    color: #333;
-    font-size: 0.9em;
+    align-items: center;
+    border: 1px solid #eee;
     color: #6c757d;
-    text-transform: capitalize;
-    margin-right: 1%;
-    padding-left: 4px;
-    padding-right: 4px;
-    display: block;
-    float: none;
-    height: auto !important;   
-    display: list-item;
-    /* text-align: -webkit-match-parent; */
-    unicode-bidi: isolate;
-    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px;
+    padding: 8px;
   }
   
   nav li.active {
@@ -306,7 +322,7 @@ width: 360px;
   .resources-max{
     display: flex;
     flex-direction: column; 
-    padding: 10px 10% 10% 15%;
+    padding: 80px 10% 10% 15%;
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;    
   }
@@ -338,7 +354,7 @@ width: 360px;
 
 @media only screen and (max-width: 1370px){
   .resources-max{
-    padding: 10px 10% 10% 5%;
+    padding: 80px 10% 10% 5%;
   }
   
 }

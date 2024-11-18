@@ -21,7 +21,7 @@
         </div>
 
         <div class="end">
-          <a href="#" style="color: red; font-weight: 700;     width: 500px;">Forgot Your Password?</a>
+          <a href="#" style="color: red; font-weight: 700;     width: 2000px;">Forgot Your Password?</a>
           <button type="submit" class="button2">Login</button>
         </div>
       <!-- </form> -->
@@ -37,6 +37,7 @@
 
 <style scoped>
 .max{
+  
     padding: 10px 20% 10% 22%;
     width: 1150px;
     text-align: justify;
@@ -74,7 +75,9 @@ input{
 }
 
 .button2 {
-  margin-left: 46%;
+  width: 300px;
+  height: 50px;
+  margin-left:-210px;
   background-color: white; 
   border: 1px solid red; 
   color: #000; 
@@ -131,7 +134,7 @@ input{
   width: 950px;
 }
 .button2{
-  margin-left: 25%;
+  /* margin-left: 25%; */
 }
 }
 @media only screen and (max-width: 1135px){
@@ -156,7 +159,8 @@ input{
 
 }
 .button2{
-  margin-left: 30%;
+  margin-left: 15%;
+  width: 500px;
 }
 }
 @media only screen and (max-width: 793px){

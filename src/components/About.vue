@@ -46,6 +46,7 @@
 
 <style scoped>
 .maxs{
+  
     margin-top: 30px;
     padding: 10px 20% 4% 22%;
     text-align: justify;

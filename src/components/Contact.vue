@@ -207,6 +207,7 @@ export default {
 }
 
 .max {
+  
   padding: 10px 5% 10% 22%;
   text-align: justify;
   display: flex;
@@ -267,9 +268,7 @@ span {
 
 input {
     border-right: none;
-    border-left: 1px solid #000000;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #000000;  
+    border: 1px solid #000000;
     height: 30px;
     width: 100%;
 }

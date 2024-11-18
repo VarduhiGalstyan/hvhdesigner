@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="pricing">
-      <div class="procong-name">Procong</div>
+      <div class="procong-name">Pricing</div>
       <div class="windows wss">
         <div class="window">
           <span class="name">Free</span>
@@ -68,7 +68,7 @@
       </div>
       <div class="windows ws">
         <div class="windows-img"> 
-          <img src="../assets/1593812195566_1651022973.jpg" alt="image" style="float: left; height: 423px; max-width: 500px;">
+          <img src="../assets/1593812195566_1651022973.jpg" alt="image" style="float: left; height: 423px; max-width: 500px; ">
         </div>
         <div class="windows-information1">
           <h1>What is HVH Desingner?</h1>
@@ -111,7 +111,8 @@
                 height: 80% !important;
                 width: 80% !important;
                 margin-top: 30px;
-                margin-left: 10%;" 
+                margin-left: 10%;
+                object-fit: cover;" 
               alt="step-img">
             </div>
             <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
@@ -151,7 +152,8 @@
   
   <style scoped>
   main {
-    padding: 10px 20% 10% 22%;
+    background-color: #f9f9f9;
+    padding: 40px 20% 10% 22%;
     text-align: justify;
     display: flex;
     flex-direction: column; 
@@ -177,7 +179,7 @@
   .start-img img{
     max-height: 500px;
     max-width: 100%;
-    margin-top: 25%;
+    margin-top: 5%;
     margin-left: 35%;  
   }
   
@@ -443,13 +445,13 @@ width: 360px;
   }
 
   .start{
-    padding: 10px 20% 10% 22%;
+    padding: 40px 20% 10% 22%;
 
   }
   
 
   .ws{
-    padding: 10px 20% 10% 22%;
+    padding: 40px 20% 10% 22%;
 
   }
   .wss{
@@ -478,7 +480,7 @@ width: 360px;
   .wss{
     display: flex;
     flex-direction: column;
-    padding: 10px 20% 10% 22%;
+    padding: 40px 20% 10% 22%;
   }
   .end-max{
     padding-top: 30px;

@@ -44,6 +44,7 @@
 
 <style scoped>
 .max{
+    
     padding: 10px 20% 4% 22%;
     width: 60%;
     text-align: justify;

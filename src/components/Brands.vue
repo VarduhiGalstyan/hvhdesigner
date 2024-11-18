@@ -316,7 +316,7 @@
 
 <style scoped>
 .top{
-  padding: 10px 20% 4% 22%;
+  padding: 40px 20% 4% 22%;
   text-align: center;
   display: flex;
   flex-direction: column ;
@@ -326,13 +326,14 @@
   width: 70%; */
 }
 .max{
+    
   padding: 10px 20% 4% 22%;
   text-align: justify;
   display: flex;
   gap:25px;
   font-family: Arial, Helvetica, sans-serif;
   flex-wrap: wrap;
-  width: 70%;
+  width: 100%;
 }
 .cell{
   width: 15%;
@@ -348,5 +349,57 @@ span{
 img{
   width: 100%;
   height: 75px;
+  object-fit: contain;
 }
+
+@media only screen and (max-width: 1650px){
+  .max{
+    padding-left: 19%;
+  }
+}
+
+
+@media only screen and (max-width: 1444px){
+  .cell{
+    width: 15%;
+  }
+  .max{
+    padding-left: 20%;
+  }
+}
+@media only screen and (min-width: 1279px){
+    .max{
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 1279px){
+.max{
+  padding-left: 5%;
+}
+.cell{
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 1060px){
+  .max{
+    /* padding-left: 0;
+    max-width: 100%; */
+    width: 100%;
+  }
+  .cell{
+    width: 24%;
+  }
+}
+@media only screen and (max-width: 834px){
+  .cell{
+    width: 31%;
+  }
+}
+@media only screen and (max-width: 698px){
+  .cell{
+    width: 45%;
+  }
+}
+
 </style>
