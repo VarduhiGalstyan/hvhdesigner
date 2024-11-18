@@ -28,10 +28,10 @@
           </div>
           <div class="buttons">
             <div>
-              <button class="button1"><span>REQUEST FREE TRIAL</span></button>
+              <button class="button1" @click="openRegisterModal" ><span>REQUEST FREE TRIAL</span></button>
             </div>
             <div>
-       <button class="button2"><span>REQUEST A DWMO</span></button>
+       <button class="button2" @click="openRegisterModal" ><span>REQUEST A DWMO</span></button>
             </div>
           </div> 
         </div>
@@ -47,7 +47,7 @@
           <p></p>
           <span class="about">3D parts library</span>
           <p></p>
-          <button class="button2"><span> Buy now</span></button>
+          <button class="button2" @click="openRegisterModal"><span> Buy now</span></button>
         </div>
         <div class="window">
           <span class="name">$29</span>
@@ -55,7 +55,7 @@
           <p></p>
           <span class="about">Single user Cad software with our 3D parts library</span>
           <p></p>
-          <button class="button2"><span>Buy now</span></button>
+          <button class="button2" @click="openRegisterModal" ><span>Buy now</span></button>
         </div>
         <div class="window">
           <span class="name">$299</span>
@@ -63,7 +63,7 @@
           <p></p>
           <span class="about">Single user Cad software with our 3D parts library</span>
           <p></p>
-          <button class="button2"><span>Buy now</span></button>
+          <button class="button2" @click="openRegisterModal" ><span>Buy now</span></button>
         </div>
       </div>
       <div class="windows ws">
@@ -130,11 +130,22 @@
         </div>
       </div>
     </div>
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <div>
+          <span @click="closeModal" class="close-btn">×</span>
+        </div>
+        <div>
+          <p class="modal-text">Something cool is coming soon!!!</p>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
   
   <script>
-  export default {};
+  export default {}
+
   </script>
   
   <style scoped>
@@ -146,7 +157,7 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   .start{
-    display: flex;/**մեինները կողք կողքի */
+    display: flex;
   }
   .start-text{
     max-width: 65%;
