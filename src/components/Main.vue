@@ -130,22 +130,23 @@
         </div>
       </div>
     </div>
-    <div v-if="showModal" class="modal">
-      <div class="modal-content">
-        <div>
-          <span @click="closeModal" class="close-btn">×</span>
-        </div>
-        <div>
-          <p class="modal-text">Something cool is coming soon!!!</p>
-        </div>
-      </div>
-    </div>
+    <Modal ref="registerModal" />
   </main>
 </template>
   
   <script>
-  export default {}
-
+    import Modal from './Modal.vue';
+    
+    export default {
+      components: {
+        Modal,
+      },
+      methods: {
+        openRegisterModal() {
+          this.$refs.registerModal.openRegisterModal();  // Կանչել Modal-ի openRegisterModal մեթոդը
+        }, 
+      },
+    };
   </script>
   
   <style scoped>
