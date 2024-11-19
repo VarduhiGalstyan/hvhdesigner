@@ -69,46 +69,54 @@ input{
     display: flex;
 }
 
-.button2 span {
-  position: relative;
-  z-index: 1; 
-}
-
-.button2 {
-  width: 300px;
+  .button2 {
+    width: 600px;
   height: 50px;
-  margin-left:-210px;
   background-color: white; 
   border: 1px solid red; 
   color: #000; 
   font-weight: 550;
   font-size: 14px;
-  padding: 14px 35px; 
+  /* padding: 14px;  */
+  padding: 5px 0;
   cursor: pointer;
   position: relative; 
   overflow: hidden;
-  width: 180px;
+  display: inline-block;
+  text-decoration: none;
+  z-index: 1;
+  transition: color 0.4s;
+
+
 }
 
 .button2:hover {
-  color: white; 
-}
+    color: white;
+  }
 
-.button2::before {
+.button2::before , .button2::after{
   content: '';
+  
   position: absolute;
-  top: 50%;
-  left: 50%;
+  /* top: 50%; */
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 0;
   background-color: red; 
-  transform: translate(-50%, -50%) scale(0); 
-  transition: transform 0.4s ease; 
-  z-index: 0;
+  transition: height 0.9s ease;
+    z-index: -1;
 }
-.button2:hover::before {
-  transform: translate(-50%, -50%) scale(1); 
+.button2::before{
+  top: 50%;
 }
+.button2::after{
+  bottom: 50%;
+}
+.button2:hover::before,
+  .button2:hover::after {
+    height: 100%;
+  }
+  
 @media only screen and (max-width: 1669px){
 
 
@@ -160,7 +168,7 @@ input{
 }
 .button2{
   margin-left: 15%;
-  width: 500px;
+  width: 1600px;
 }
 }
 @media only screen and (max-width: 793px){
@@ -188,6 +196,7 @@ input{
 }
 .button2{
   margin-left: 10px;
+  width: 600px;
 }
 }
 </style>

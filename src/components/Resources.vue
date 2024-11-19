@@ -175,7 +175,7 @@ button{
 span, .span{
     font-size: 16px;
     font-weight: 500;
-    color: #6c757d;
+    /* color: #6c757d; */
     line-height: 1.6;
     
 }
@@ -222,50 +222,52 @@ nav {
 
 
 
-
-
-
-
-
 .button2 {
   background-color: white; 
-  margin-top: 10px;
   border: 1px solid red; 
-  color: #000; 
+  color: #000 ; 
   font-weight: 550;
+  width: 180px;
   font-size: 14px;
-  padding: 10px 20px; 
+  /* padding: 14px;  */
+  padding: 5px 0;
   cursor: pointer;
   position: relative; 
   overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
   z-index: 1;
-}
-.button2:hover {
-  /* background-color: red;  */
-  color: white; 
+  transition: color 0.4s;
+
+
 }
 
-.button2::before {
+.button2 span:hover {
+    color: white;
+  }
+
+.button2::before , .button2::after{
   content: '';
+  
   position: absolute;
-  top: 50%;
-  left: 50%;
+  /* top: 50%; */
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 0;
   background-color: red; 
-  transform: translate(-50%, -50%) scale(0); 
-  transition: transform 0.4s ease; 
-  z-index: 0;
+  transition: height 0.9s ease;
+    z-index: -1;
 }
-.button2:hover::before {
-  transform: translate(-50%, -50%) scale(1); 
+.button2::before{
+  top: 50%;
 }
-
-.button2 span {
-  position: relative;
-  color: #000;
-  z-index: 1; 
+.button2::after{
+  bottom: 50%;
 }
+.button2:hover::before,
+  .button2:hover::after {
+    height: 100%;
+  }
 .end-max{
   display: flex;
   height: auto;
