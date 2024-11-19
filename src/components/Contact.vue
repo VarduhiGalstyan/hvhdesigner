@@ -263,7 +263,7 @@ p {
 }
 
 span {
-    color: red;
+    /* color: red; */
 }
 
 input {

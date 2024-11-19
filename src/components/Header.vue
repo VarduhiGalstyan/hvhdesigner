@@ -99,7 +99,7 @@
         this.menuVisible = !this.menuVisible;
       },
       openRegisterModal() {
-        this.$refs.registerModal.openRegisterModal();  // Կանչել Modal-ի openRegisterModal մեթոդը
+        this.$refs.registerModal.openRegisterModal();  
       }, 
     },
   };
