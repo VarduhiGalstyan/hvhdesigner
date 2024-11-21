@@ -116,7 +116,7 @@
               alt="step-img">
             </div>
             <div class="end-information" style="padding: 20px; height: 510px;  overflow: hidden; text-align: center;">
-                <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
+                <a  @click.prevent="goToStep" class="blog" >
                   <span style="color: red !important;">
                     What is a STEP File Format
                   </span>
@@ -137,6 +137,7 @@
   <script>
     import Modal from './Modal.vue';
     
+    
     export default {
       components: {
         Modal,
@@ -145,6 +146,9 @@
         openRegisterModal() {
           this.$refs.registerModal.openRegisterModal();  
         }, 
+        goToStep() {
+          this.$router.push('/step');
+        },
       },
     };
   </script>
@@ -152,7 +156,7 @@
   <style scoped>
   main {
     background-color: #f9f9f9;
-    padding: 40px 20% 10% 22%;
+    padding: 40px 22% 10% 22%;
     text-align: justify;
     display: flex;
     flex-direction: column; 
@@ -456,13 +460,13 @@ width: 360px;
   }
 
   .start{
-    padding: 40px 20% 10% 22%;
+    padding: 40px 22% 10% 22%;
 
   }
   
 
   .ws{
-    padding: 40px 20% 10% 22%;
+    padding: 40px 22% 10% 22%;
 
   }
   .wss{
@@ -491,7 +495,7 @@ width: 360px;
   .wss{
     display: flex;
     flex-direction: column;
-    padding: 40px 20% 10% 22%;
+    padding: 40px 22% 10% 22%;
   }
   .end-max{
     padding-top: 30px;
@@ -509,6 +513,42 @@ width: 360px;
     width: 100%;
   }
 }
+@media only screen and (max-width: 1406px){
+  .windows-img2 img{
+    float: right;
+    height: 362px !important;
+    margin: 30px;
+    width: 325px !important;
+  }
+}
+@media only screen and (max-width: 1190px){
+  .windows-img2 img{
+    float: right;
+    height: 344px !important;
+    margin-left: 30px;
+    padding-top: 40px;
+    width: 291px !important;
+  }
+}
+@media only screen and (max-width: 1190px){
+  .windows-img2 img{
+    float: right;
+    height: 300px !important;
+    margin-left: 30px;
+    padding-top: 40px;
+    width: 260px !important;
+  }
+}
+@media only screen and (max-width: 953px){
+  .windows-img2 img{
+    float: right;
+    height: 250px !important;
+    margin-left: 30px;
+    padding-top: 40px;
+    width: 230px !important;
+  }
+}
+
 @media only screen and (max-width: 767px){
   .start{
     display: flex;

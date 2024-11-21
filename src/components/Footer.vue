@@ -134,6 +134,9 @@ footer {
   
 }
 
+img{
+  object-fit: contain;
+}
 .add2div {
   display: flex;
   flex-direction: column; 

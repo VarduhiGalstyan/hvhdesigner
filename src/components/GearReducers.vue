@@ -94,8 +94,10 @@
 <style scoped>
 .max{
   max-width: 1220px;
-  padding: 10px 20% 10% 22%;
+  padding: 54px 0 10% 17.5%;
   text-align: justify;
+  width: 100%;
+
   display: flex;
   gap:10px;
   font-family: Arial, Helvetica, sans-serif;
@@ -119,27 +121,41 @@ img{
 }
 @media only screen and (max-width: 1650px){
   .max{
-    padding-left: 19%;
-  }
+    padding: 54px 0 10% 17.5%;  }
 }
-
-
+@media only screen and (max-width: 1477px){
+  .max{
+    padding: 54px 0 10% 11.5%;  }
+}
 @media only screen and (max-width: 1444px){
   .cell{
     width: 15%;
   }
+  
+}
+@media only screen and (max-width: 1375px){
+  .cell{
+    width: 15%;
+  }
   .max{
-    padding-left: 20%;
+    padding: 54px 0 10% 6.5%;  }
+}
+@media only screen and (max-width: 1477px){
+  .cell{
+    width: 24%;
   }
 }
-@media only screen and (max-width: 1279px){
+@media only screen and (max-width: 1301px){
 .max{
-  padding-left: 5%;
+  padding: 54px 0 10% 2.5%;
 }
-.cell{
-    width: 20%;
-  }
 }
+@media only screen and (max-width: 1247px){
+.max{
+  padding: 54px 0 10% 0;
+}
+}
+
 
 @media only screen and (max-width: 1060px){
   .max{

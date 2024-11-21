@@ -327,7 +327,7 @@
 }
 .max{
     
-  padding: 10px 20% 4% 22%;
+  padding: 10px 10% 4% 20%;
   text-align: justify;
   display: flex;
   gap:25px;
@@ -374,7 +374,8 @@ img{
 }
 @media only screen and (max-width: 1279px){
 .max{
-  padding-left: 5%;
+  padding: 10px 0% 4% 5%;
+  width: 95%;
 }
 .cell{
     width: 20%;
@@ -382,18 +383,16 @@ img{
 }
 
 @media only screen and (max-width: 1060px){
-  .max{
-    /* padding-left: 0;
-    max-width: 100%; */
-    width: 100%;
-  }
   .cell{
-    width: 24%;
+    width: 22%;
   }
 }
 @media only screen and (max-width: 834px){
   .cell{
     width: 31%;
+  }
+  .max{
+    padding-top: 40px;
   }
 }
 @media only screen and (max-width: 698px){

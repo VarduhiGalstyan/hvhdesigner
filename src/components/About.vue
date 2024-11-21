@@ -179,7 +179,7 @@ width: 360px;
 }
 @media only screen and (max-width: 1060px){
   .maxs{
-    padding: 10px 0 4% 0;
+    padding:  0 4% 0;
   }
 }
 </style>

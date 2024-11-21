@@ -38,7 +38,7 @@
 <style scoped>
 .max{
   
-    padding: 10px 20% 10% 22%;
+    padding: 10px 8% 10% 22%;
     width: 1150px;
     text-align: justify;
     display: flex;
@@ -116,11 +116,7 @@ input{
   .button2:hover::after {
     height: 100%;
   }
-  
-@media only screen and (max-width: 1669px){
 
-
-}
 @media only screen and (max-width: 1669px){
 .max{
   padding: 10px 20% 10% 18%;
@@ -162,7 +158,6 @@ input{
 }
 @media only screen and (max-width: 991px){
 .max{
-  padding: 10px 20% 10% 14%;
   width: 620px;
 
 }
@@ -171,32 +166,87 @@ input{
   width: 1600px;
 }
 }
+@media only screen and (max-width: 991px){
+  .max{
+    padding: 10px 20% 10% 4%;
+
+  }
+}
 @media only screen and (max-width: 793px){
 .max{
-  padding: 10px 20% 10% 10%;
+  padding: 10px 9% 10% 10%;
+
+}
+}
+@media only screen and (max-width: 809px){
+.max{
+  padding: 10px 9% 10% 10%;
 
 }
 }
 @media only screen and (max-width: 768px){
 .max{
-  padding: 10px 20% 10% 10%;
-  width: 1350px;
+  padding: 10px 0 10% 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.login{
+  padding-left: 10%;
+  width: 71%;
+}
 .button2{
   margin-left: 50%;
 }
+input{
+  height: 35px;
 }
+.end a{
+  width: 2500px !important;
+}
+.vidio{
+  padding-left: 10%;
+  width: 70%;
+}
+}
+@media only screen and (max-width: 732px){
+  .end a{
+  width: 3500px !important;
+}
+}
+@media only screen and (max-width: 747px){
+  .end a{
+  width: 3500px !important;
+}
+}
+@media only screen and (max-width: 717px){
+  .end a{
+  width: 3500px !important;
+}
+}
+@media only screen and (max-width: 691px){
+  .end a{
+  width: 3740px !important;
+}
+}
+
 @media only screen and (max-width: 651px){
-.max{
+/* .max{
   padding-left: 10px;
   width: 1150px;
 }
 .button2{
   margin-left: 10px;
   width: 600px;
+} */
+.end a{
+  width: 4000px !important;
+}
+}
+@media only screen and (max-width: 550px){
+  .end a{
+  width: 2000px !important;
 }
 }
 </style>

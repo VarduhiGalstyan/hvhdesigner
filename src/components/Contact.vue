@@ -276,7 +276,7 @@ input {
 .recaptcha {
     justify-content: end;
     height: 60px;
-    padding-left: 38%;
+    padding-left: 42%;
     padding-bottom: 10px;
 }
 .g-recaptcha{
@@ -300,6 +300,7 @@ input {
   border: none;
   padding: 10px 20px; 
   cursor: pointer;
+  width: 200px;
   position: relative; 
   overflow: hidden; 
   z-index: 1;
@@ -415,7 +416,7 @@ input {
     width: 85%;
   }
   .recaptcha{
-    padding-left: 57%;
+    padding-left: 58%;
   }
   .buttons{
     padding-left: 71%;
@@ -539,7 +540,7 @@ input {
 }
 @media only screen and (max-width: 594px){
   .recaptcha{
-    padding-left: 23%;
+    padding-left: 25%;
   }
   .buttons{
     padding-left: 48%;
@@ -547,7 +548,7 @@ input {
 }
 @media only screen and (max-width: 570px){
   .recaptcha{
-    padding-left: 20%;
+    padding-left: 34%;
   }
   .buttons{
     padding-left: 44%;
@@ -562,7 +563,7 @@ input {
 }
 @media only screen and (max-width: 553px){
   .recaptcha{
-    padding-left: 18%;
+    padding-left: 32%;
   }
   .buttons{
     padding-left: 44%;
@@ -570,7 +571,7 @@ input {
 }
 @media only screen and (max-width: 538px){
   .recaptcha{
-    padding-left: 14%;
+    padding-left: 31%;
   }
   .buttons{
     padding-left: 40%;
@@ -578,7 +579,7 @@ input {
 }
 @media only screen and (max-width: 519px){
   .recaptcha{
-    padding-left: 11%;
+    padding-left: 27%;
   }
   .buttons{
     padding-left: 40%;
@@ -586,7 +587,7 @@ input {
 }
 @media only screen and (max-width: 506px){
   .recaptcha{
-    padding-left: 7%;
+    padding-left: 25%;
   }
   .buttons{
     padding-left: 40%;

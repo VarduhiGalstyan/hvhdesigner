@@ -43,7 +43,7 @@
                       @click="setActive('login')" >Login
                     </li>
                     <li class="register" 
-                      :class="{ active: activeLink === 'register' }" @click="openRegisterModal">
+                      :class="{ active: activeLink === 'register' }" @click="openRegisterModal" style="margin-left: 0;">
                         Register
                     </li>
                   </ul>
@@ -108,7 +108,7 @@
   <style scoped>
   
   header {
-    padding: 0;
+    padding: 0 0 0 0;
     background-color: #fff !important;
     width: 100%;
     background: #fff;
@@ -186,16 +186,21 @@
   
   .log-reg{
     padding-left: 13%;
+    align-items: center;
+    display: flex;
   }
-  .LoginRegister{
-    margin-left: 20px;
+  /* .LoginRegister{
     align-items: center;
     background-color: #f9f9f9;
-    /* padding-right: 30px; */
     padding-left: 0px;
     height: 50px;
     display: flex !important;
-  }
+  } */
+   .LoginRegister ul li{
+    background-color: #9191911a;
+    color: #333;
+    padding: 11px 43px;
+   }
   .hamburger {
     background-color: #333;
     border: 1px solid transparent;
@@ -332,6 +337,12 @@
   cursor: pointer;
   text-decoration: none;
 }
+/* @media only screen and (max-width: 1200px){
+  header{
+    padding: 0 0 0 10px;
+  }
+} */
+
   @media only screen and (max-width: 1111px){
     .log-reg{
       padding-left: 5% !important;
@@ -354,6 +365,13 @@
   nav ul{
     padding-left: 1px;
   }
+  }
+  @media only screen and (max-width: 1284px){
+    .LoginRegister ul li{
+    background-color: #9191911a;
+    color: #333;
+    padding: 11px 22px;
+   }
   }
   @media only screen and (min-width: 768px){
     .hamburger{

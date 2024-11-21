@@ -9,6 +9,7 @@ import Login from '@/components/Login.vue';
 import Terms from '@/components/Terms.vue';
 import Privacy from '@/components/Privacy.vue';
 import About from '@/components/About.vue';
+import Step from '@/components/Step.vue'; 
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/step',
+    name: 'Step',
+    component: Step,
   }
 ];
 
