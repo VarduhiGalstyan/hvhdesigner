@@ -4,6 +4,23 @@
         <div class="stepimgdiv">
             <img class="stepimg" src="../assets/photo-1651197310.jpg" alt="imgStep">
         </div>
+        <div class="social-container">
+            <div class="social-item">
+                <a href="https://www.facebook.com/" @click.prevent="shareOnFacebook">
+                    <img src="../assets/Facebook_logo.png" alt="FB" class="social-icon" />
+                </a>
+            </div>
+            <div class="social-item">
+                <a href="https://am.linkedin.com/" @click.prevent="shareOnLinkdin">
+                    <img src="../assets/download.png" alt="LinkedIn" class="social-icon" />
+                </a>
+            </div>
+            <div class="social-item">
+                <a href="https://x.com/?lang=en" @click.prevent="shareOnTwiiter">
+                    <img src="../assets/download-t.png" alt="Twitter" class="social-icon"/>
+                </a>
+            </div>
+        </div>
         <span style="font-size: 18px;">There are so many CAD software and each has its own file extensions, but many times engineers have to exchange CAD files from company to company and use CAD models that were created in one software in another. When each software has its own file extension and can be used only by that software then we have a problem.  </span>
         <p class="p">What could be a solution to this? </p>
         <p>A universal file extension that can be used to exchange data from one software to another. </p>
@@ -44,7 +61,53 @@
     </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    shareOnFacebook() {
+      const shareURL = "https://www.facebook.com/";
+      window.open(shareURL, "_blank", "width=600,height=400");
+    },
+    shareOnLinkdin() {
+      const shareURL = "https://www.linkedin.com/in/vladharut/";
+      window.open(shareURL, "_blank", "width=600,height=400");
+    },
+    shareOnTwiiter() {
+      const shareURL = "https://x.com/?lang=en";
+      window.open(shareURL, "_blank", "width=600,height=400");
+    },
+  },
+};
+</script>
+
 <style scoped>
+.social-container div a img{
+    border-radius: 5px;
+}
+.social-container div a img:hover{
+    opacity: 0.5;
+}
+
+.social-container {
+  margin-left: -50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: fixed;
+}
+
+.social-item {
+  width: 30px;
+  height: 30px;
+}
+.social-item img {
+  object-fit: contain;
+}
+.social-icon {
+  width: 100%;
+  height: auto;
+}
 h2{
     color: rgb(122, 115, 115);
     font-size: 25px;

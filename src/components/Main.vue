@@ -226,9 +226,6 @@
   transition: right 0.4s ease; 
   color: #000 !important;
 }
-/* .button1 span::after{
-  color: #000 !important;
-} */
 .button1 span, .button2 span {
   position: relative;
   z-index: 1; 
@@ -245,7 +242,6 @@
   font-weight: 550;
   width: 180px;
   font-size: 14px;
-  /* padding: 14px;  */
   padding: 5px 0;
   cursor: pointer;
   position: relative; 
@@ -264,9 +260,7 @@
 
 .button2::before , .button2::after{
   content: '';
-  
   position: absolute;
-  /* top: 50%; */
   left: 0;
   width: 100%;
   height: 0;
@@ -304,9 +298,7 @@
   padding: 1%;
 }
 .window{
-  /* max-width: 35%;  */
   width: 35%;
-  /* padding-right: 10px; */
   padding:5%;
   cursor: pointer;
   box-shadow: 1px 1px 8px 0 rgb(175 167 167 / 88%),
@@ -346,7 +338,6 @@
   width: 100%;
   padding-right: 15px;
   padding-top: 6%;
-  /* padding-left: 15px; */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   color: #333;
@@ -435,7 +426,6 @@ width: 360px;
   justify-content: center;
     border: 1px solid #eee;
     height: 280px;
-    /* width: 250px; */
     object-fit: cover;
     margin-bottom: 15px;
 }

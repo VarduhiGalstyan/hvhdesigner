@@ -2,8 +2,6 @@
    <div class="max">
     <div class="login">
       <h1>Login</h1>
-
-      <!-- <form @submit.prevent="login"> -->
         <div>
           <label for="Email-or-Login">Email or Login:</label>
           <input type="text"  id="Email-or-Login" required />
@@ -24,7 +22,6 @@
           <a href="#" style="color: red; font-weight: 700;     width: 2000px;">Forgot Your Password?</a>
           <button type="submit" class="button2">Login</button>
         </div>
-      <!-- </form> -->
     </div>
     <div class="vidio">
       <video width="100%" height="240" controls>
@@ -54,7 +51,6 @@ h1{
     text-transform: capitalize;
 }
 label, span{
-    /* font-size: 16px; */
     font-weight: 700;
     display: block;
     text-align: start;
@@ -77,7 +73,6 @@ input{
   color: #000; 
   font-weight: 550;
   font-size: 14px;
-  /* padding: 14px;  */
   padding: 5px 0;
   cursor: pointer;
   position: relative; 
@@ -98,7 +93,6 @@ input{
   content: '';
   
   position: absolute;
-  /* top: 50%; */
   left: 0;
   width: 100%;
   height: 0;
@@ -119,41 +113,44 @@ input{
 
 @media only screen and (max-width: 1669px){
 .max{
-  padding: 10px 20% 10% 18%;
+  padding: 10px 8% 10% 7%;
+  height: 377px;
 }
 }
 @media only screen and (max-width: 1362px){
 .max{
-  padding: 10px 20% 10% 14%;
+  padding: 10px 4% 10% 8%;
+}
+@media only screen and (max-width: 1300px){
+.max{
+  padding: 10px 4% 10% 2%;
+}
 }
 }
 @media only screen and (max-width: 1239px){
 .max{
-  padding: 10px 20% 10% 8%;
+  padding: 10px 1% 10% 5%;
 }
 }
 @media only screen and (max-width: 1200px){
 .max{
-  padding: 10px 20% 10% 14%;
   width: 950px;
 }
-.button2{
-  /* margin-left: 25%; */
-}
+
 }
 @media only screen and (max-width: 1135px){
 .max{
-  padding: 10px 20% 10% 10%;
+  padding: 10px 1% 10% 5%;
 }
 }
 @media only screen and (max-width: 1053px){
 .max{
-  padding: 10px 20% 10% 4%;
+  padding: 10px 1% 10% 4%;
 }
 }
 @media only screen and (max-width: 1053px){
 .max{
-  padding: 10px 20% 10% 4%;
+  padding: 10px 1% 10% 4%;
 }
 }
 @media only screen and (max-width: 991px){
@@ -168,19 +165,19 @@ input{
 }
 @media only screen and (max-width: 991px){
   .max{
-    padding: 10px 20% 10% 4%;
+    padding: 10px 1% 10% 4%;
 
   }
 }
 @media only screen and (max-width: 793px){
 .max{
-  padding: 10px 9% 10% 10%;
+  padding: 10px 1% 10% 3%;
 
 }
 }
 @media only screen and (max-width: 809px){
 .max{
-  padding: 10px 9% 10% 10%;
+  padding: 10px 1% 10% 5%;
 
 }
 }
@@ -191,6 +188,9 @@ input{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.max{
+  padding: 10px 1% 28% 0.5%;
 }
 .login{
   padding-left: 10%;
@@ -232,14 +232,7 @@ input{
 }
 
 @media only screen and (max-width: 651px){
-/* .max{
-  padding-left: 10px;
-  width: 1150px;
-}
-.button2{
-  margin-left: 10px;
-  width: 600px;
-} */
+
 .end a{
   width: 4000px !important;
 }

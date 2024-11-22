@@ -3,20 +3,10 @@
 
     <div class="max">
       <div class="left">
-        <!-- <div class="imgs12">
-          <div class="imgs1">
-            img1
-          </div>
-          <div class="imgs2">
-            img2
-          </div>
-        </div> -->
-        <!-- <div> -->
           <h1>Contact HVH Team</h1>
           <hr>
           <p>Phone: 1(866)577-4040</p>
           <p>email: info@hvhindustrial.com</p>
-        <!-- </div> -->
       </div>
 
       <div class="right">
@@ -75,9 +65,6 @@
             </div>
           </form>
         </div>
-        <!-- <div class="img">
-          img-right
-        </div> -->
       </div>
     </div>
     </div>
@@ -211,7 +198,6 @@ export default {
   padding: 10px 5% 10% 22%;
   text-align: justify;
   display: flex;
-    /* flex-direction: column;  */
   font-family: Arial, Helvetica, sans-serif;
   gap: 30px;
 }
@@ -227,12 +213,7 @@ export default {
     display: flex;
     gap: 10px;
 }
-/* .imgs12{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding-top: 35%;
-} */
+
 
 h1 {
     color: red;
@@ -262,9 +243,7 @@ p {
     color: #6c6c6c;
 }
 
-span {
-    /* color: red; */
-}
+
 
 input {
     border-right: none;
@@ -340,7 +319,6 @@ input {
   font-weight: 550;
   width: 180px;
   font-size: 14px;
-  /* padding: 14px;  */
   padding: 5px 0;
   cursor: pointer;
   position: relative; 
@@ -361,7 +339,6 @@ input {
   content: '';
   
   position: absolute;
-  /* top: 50%; */
   left: 0;
   width: 100%;
   height: 0;
@@ -593,13 +570,4 @@ input {
     padding-left: 40%;
   }
 }
-
-
-
-
-
-
-
-
-
 </style>

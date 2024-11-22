@@ -159,8 +159,6 @@ img{
 
 @media only screen and (max-width: 1060px){
   .max{
-    /* padding-left: 0;
-    max-width: 100%; */
     width: 100%;
   }
   .cell{

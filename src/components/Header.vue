@@ -119,9 +119,6 @@
     position: relative;
     display: flex;
     box-shadow: 1px 1px 8px #afa7a7e0, 0 6px 20px #8c85851f !important;
-    /* display: flex;
-    align-items: center; */
-    /* padding-left: 20px; */
   }
   .header{
     width: 100%;
@@ -147,7 +144,6 @@
   }
   
   nav {
-    /* flex-grow: 1; */
     justify-content: space-between;
   }
   
@@ -157,8 +153,6 @@
     justify-content: space-between;
     display: flex;
     list-style: none;
-    /* padding: 0;
-    margin: 0; */
   }
   
 
@@ -176,7 +170,7 @@
     display: list-item;
     text-align: -webkit-match-parent;
     unicode-bidi: isolate;
-    margin-left: 20px; /* Space between nav items */
+    margin-left: 20px; 
     cursor: pointer;
   }
   
@@ -189,13 +183,6 @@
     align-items: center;
     display: flex;
   }
-  /* .LoginRegister{
-    align-items: center;
-    background-color: #f9f9f9;
-    padding-left: 0px;
-    height: 50px;
-    display: flex !important;
-  } */
    .LoginRegister ul li{
     background-color: #9191911a;
     color: #333;
@@ -252,8 +239,6 @@
   .login{
     list-style: none;
     text-transform: none  !important;
-    /* background-color: #f9f9f9; */
-    /* padding-left: px; */
     padding-right: 20px;
     border-right: 1px solid #ccc;
     color: #333;
@@ -265,10 +250,6 @@
     list-style: none;
     border-right: 0px solid #ccc !important;
     text-transform: none  !important;
-    /* background-color: #f9f9f9; */
-    /* padding-left: 15px; */
-    /* padding-right: 15px; */
-    /* border-right: 1px solid #ccc; */
     color: #333;
     display: list-item;
     text-align: -webkit-match-parent;
@@ -287,7 +268,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,11 +318,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-/* @media only screen and (max-width: 1200px){
-  header{
-    padding: 0 0 0 10px;
-  }
-} */
 
   @media only screen and (max-width: 1111px){
     .log-reg{

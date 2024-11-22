@@ -29,7 +29,6 @@
           placeholder="Enter your email address"
           style="height: 25px; width: 85%;"
         />
-        <!-- Սխալ հաղորդագրությունը -->
         <p v-if="errorMessage" style="color: #a94442 !important; line-height: normal; height: 1px;;">
           {{ errorMessage }}
         </p>
@@ -95,14 +94,13 @@ export default {
   data() {
     return {
       email: "", 
-      errorMessage: "", // email փոփոխական
+      errorMessage: "", 
       activeLink: "all",
       filter: "All",
     };
   },
   methods: {
     handleSubscribe() {
-      // Ստուգենք, եթե email-ը դատարկ է
       if (!this.email) {
         this.errorMessage = "The email field is required."; 
       } else {
@@ -175,7 +173,6 @@ button{
 span, .span{
     font-size: 16px;
     font-weight: 500;
-    /* color: #6c757d; */
     line-height: 1.6;
     
 }
@@ -192,9 +189,7 @@ nav {
   }
   
   nav ul {
-
     flex-direction: row;
-    /* justify-content: space-between; */
     display: flex;
     list-style: none;
     margin-left: -36px;
@@ -218,10 +213,6 @@ nav {
     color: red; 
 }
 
-
-
-
-
 .button2 {
   background-color: white; 
   border: 1px solid red; 
@@ -229,7 +220,6 @@ nav {
   font-weight: 550;
   width: 180px;
   font-size: 14px;
-  /* padding: 14px;  */
   padding: 5px 0;
   cursor: pointer;
   position: relative; 
@@ -238,8 +228,6 @@ nav {
   text-decoration: none;
   z-index: 1;
   transition: color 0.4s;
-
-
 }
 
 .button2 span:hover {
@@ -248,9 +236,7 @@ nav {
 
 .button2::before , .button2::after{
   content: '';
-  
   position: absolute;
-  /* top: 50%; */
   left: 0;
   width: 100%;
   height: 0;
@@ -308,7 +294,6 @@ width: 360px;
   justify-content: center;
     border: 1px solid #eee;
     height: 280px;
-    /* width: 250px; */
     object-fit: cover;
     margin-bottom: 15px;
 }

@@ -1,6 +1,5 @@
 <template>
   <footer>
-    <!-- <div class="footer"> -->
       <div class="add2div">
 
         <div class="top">
@@ -95,7 +94,6 @@
           </div>
         </div>
       </div> 
-    <!-- </div> -->
   </footer>
 </template>
 
@@ -143,18 +141,14 @@ img{
 }
 
 .top {
-  /* align-items: center; */
   margin-top: 30px;
-  display: flex; /* down div-ի մեջ div-երը կողք կողքի */
-  justify-content: space-between; /* div-երի միջև տարածություն */
-  /* align-items: center;  */
+  display: flex; 
+  justify-content: space-between; 
 }
 .down{
-  /* align-items: center; */
   margin-top: 10px;
-  display: flex; /* down div-ի մեջ div-երը կողք կողքի */
-  justify-content: space-between; /* div-երի միջև տարածություն */
-  /* align-items: center;  */
+  display: flex; 
+  justify-content: space-between; 
 }
 
 .top-left, .down-left {
@@ -177,7 +171,6 @@ img{
   height: 70px;
   flex: 2; 
   display: flex;
-  /* top-center div-ը՝ վերևում, top-right div-ը՝ ներքևում */
 }
 .top-center, .down-centen{
   max-width: 50%;  
@@ -208,7 +201,6 @@ p{
 .down-right{
   max-width: 25%;  
   display: flex;
-  /* flex: 0 0 16.6666666667%; */
   max-width: 16.6666666667%;
   margin-left: auto;
   font-size: 14px;
@@ -218,10 +210,8 @@ p{
   height: 70px;
 }
 
-/* down */
 .down-left{
   display: flex;
-  /* padding-left: 30px; */
 }
 .down-left img{
   width: 15%;
@@ -239,7 +229,6 @@ p{
 
 .down-center {
   flex: 1.7;
-  /* text-align: center; */
   margin-left: 14%;
 }
 
@@ -250,9 +239,6 @@ p{
 .down-right {
   text-align: auto;
 }
-/* .top-center-LeftTop li:hover {
-    text-decoration: underline;
-} */
 @media only screen and (max-width: 1715px){
   .down-center{
     margin-left: 12% ;

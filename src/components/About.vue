@@ -15,7 +15,6 @@
             </div>
             <div class="max-right">
                 <span style="padding-bottom: 5px !important;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Maecenas feugiat consequat diam.\Maecenas metus.</span>
-                <!-- <span> Maecenas feugiat consequat diam.\Maecenas metus.</span> -->
                 <span> Vivamus diam purus, cursus a, commodo non, facilisis vi</span>
             </div>
         </div>
@@ -142,10 +141,6 @@ width: 360px;
   .max-left{
     height: 500px;
   }
-  .max-left div img{
-    /* height: 450px;
-    width: 600px;*/ 
-    }
     .max-right {
     margin-top: 7%;
   }
