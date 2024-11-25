@@ -22,8 +22,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      faqs: [], // Store FAQ data
-      isRotated: {} // Dynamic state for each FAQ
+      faqs: [], 
+      isRotated: {} 
     };
   },
   mounted() {

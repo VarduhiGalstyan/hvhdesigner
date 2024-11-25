@@ -136,37 +136,16 @@
   
   <script>
     import Modal from './Modal.vue';
-    import axios from 'axios';
+    import { mapGetters } from 'vuex';
     
     export default {
       components: {
         Modal,
       },
+      computed: {
+        ...mapGetters(['getToken']), 
+      },
       methods: {
-        // Լոգինի մեթոդը, որը կիրառում է API հարցումը
-        async handleLogin() {
-          const loginData = {
-            email: 'apihvh@designer.com', 
-            password: ')jM2nh;8XMeg3w&7%xWX7ek2;Uw,robUKzfS4oLb}\'H1j.;bt)',
-          };
-          // try {
-            // API հարցման կատարում
-            const response = await axios.post('https://webapi.hvhdesigner.com/api/get-token', loginData);
-            console.log(response.data); //API-ի պատասխանն
-            if (response.data.status) {
-              // Հաջողությամբ լոգին է արվել, ցուցադրում ենք հաղորդագրությունը
-              console.log('Successfully logged in:', response.data.token);
-              alert("Successfully logged in!");
-            } else {
-              console.log('Login failed');
-              alert("Login failed. Please check your credentials.");
-            }
-          // } catch (error) {
-          //   // Սխալ հարցում
-          //   console.error("Error during login:", error);
-          //   alert("An error occurred during login.");
-          // }
-        },
         openRegisterModal() {
           this.$refs.registerModal.openRegisterModal();  
         }, 
@@ -175,8 +154,11 @@
         },
       },
       mounted() {
-      this.handleLogin();
-    },
+        if (!this.getToken) {
+          this.$store.dispatch('fetchToken'); 
+        }
+        console.log('Token from Vuex store:', this.getToken); 
+      },
     };
   </script>
   

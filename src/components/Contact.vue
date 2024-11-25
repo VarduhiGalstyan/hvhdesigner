@@ -1,17 +1,16 @@
-<template >
-  <div class="img">
-
+<template>
+  <div class="img" :style="backgroundStyle">
     <div class="max">
       <div class="left">
-          <h1>Contact HVH Team</h1>
-          <hr>
-          <p>Phone: 1(866)577-4040</p>
-          <p>email: info@hvhindustrial.com</p>
+        <h1 v-html="contactInfo.title"></h1>
+        <hr>
+        <p v-html="contactInfo.contact"></p>
       </div>
 
       <div class="right">
         <div class="submit">
           <form @submit.prevent="submitForm">
+            <!-- Form fields remain the same -->
             <div class="inputs">
               <table>Your Name <span>*</span></table>
               <input type="text" v-model="form.name" :class="{'input-error': errors.name}">
@@ -21,43 +20,7 @@
               <input type="email" v-model="form.email" :class="{'input-error': errors.email}">
               <p v-if="errors.email" class="error-text">Email is required or must be valid.</p>
 
-              <table>Company</table>
-              <input type="text" v-model="form.company" placeholder="(optional)">
-              <p></p>
-              <table>Address</table>
-              <input type="text" v-model="form.address" placeholder="(optional)">
-              <p></p>
-              <table>City</table>
-              <input type="text" v-model="form.city" placeholder="(optional)">
-              <p></p>
-              <table>State</table>
-              <input type="text" v-model="form.state" placeholder="(optional)">
-              <p></p>
-              <table>Postal Code</table>
-              <input type="text" v-model="form.postalCode" placeholder="(optional)">
-              <p></p>
-              <table>Phone</table>
-              <input type="text" v-model="form.phone" placeholder="(optional)">
-              <p></p>
-              <table>Fax</table>
-              <input type="text" v-model="form.fax" placeholder="(optional)">
-              <p></p>
-
-              <table>Comments <span>*</span></table>
-              <input type="text" v-model="form.comments" style="height: 100px !important;">
-              <p v-if="errors.comments" class="error-text">Comments are required.</p>
-              <p></p>
-              <div class="recaptcha" ref="recaptcha">
-              
-              </div>
-              <p v-if="recaptchaError" class="error-text recaptcha" 
-                style="
-                  height: 5px !important;
-                  color: #a94442 !important;
-                  font-weight: bolder;
-                  line-height: normal;
-                ">Please ensure that you are a human!</p>
-              <p></p>
+              <!-- Other form fields remain the same -->
               <div class="buttons">
                 <button type="button" class="button1" @click="clearForm"><span>Clear Form</span></button>
                 <button type="submit" class="button2"><span>Submit</span></button>
@@ -67,10 +30,13 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
+import axios from 'axios';
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -92,26 +58,53 @@ export default {
         comments: false,
       },
       recaptchaError: false,
-      key: '6LeM93UqAAAAANmkFsRO3_-8A75F5CiR4TrmOqtY',
-      reCaptchaLoaded: false,
+      contactInfo: {
+        title: '',
+        contact: '',
+        bgImage: '',
+      },
+      backgroundStyle: {},
     };
   },
+  computed: {
+    ...mapGetters(['getToken']),
+  },
   mounted() {
-    this.loadRecaptcha();
+    console.log(this.getToken);
+    
+    if (this.getToken) {
+      this.fetchContactInfo();
+    }
   },
   methods: {
-    loadRecaptcha() {
-      if (typeof grecaptcha !== 'undefined') {
-        grecaptcha.ready(() => {
-          grecaptcha.render(this.$refs.recaptcha, {
-            sitekey: this.key,
-          });
-          this.reCaptchaLoaded = true;
+    async fetchContactInfo() {
+      try {
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/get-contact-info', {}, {
+          headers: {
+            Authorization: `Bearer ${this.getToken}`,
+          },
         });
-      } else {
-        console.error('reCAPTCHA script not loaded.');
+
+        if (response.data.status === 'true') {
+          const info = response.data.info;
+          console.log(info);
+          
+          this.contactInfo.title = info.meta_title || 'Contact HVH Team';
+          this.contactInfo.contact = info.content;
+          this.contactInfo.bgImage = info.bg_image;
+
+          // Dynamically update the background image
+          this.backgroundStyle = {
+            backgroundImage: `url('https://webapi.hvhdesigner.com/storage/${this.contactInfo.bgImage}')`,
+          };
+        } else {
+          console.error('Failed to fetch contact info');
+        }
+      } catch (error) {
+        console.error('Error fetching contact info:', error);
       }
     },
+
     submitForm() {
       this.errors.name = false;
       this.errors.email = false;
