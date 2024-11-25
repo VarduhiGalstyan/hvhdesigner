@@ -1,44 +1,69 @@
 <template>
-    <div class="max">
-        <h1>Frequently Asked Questions</h1>
-        
-        <div class="class">
-            <div class="class1">
-                <button @click="toggle(1)" class="card">
-                    How to request a custom 3D Model
-                    <span style="color: red; font-weight: 900;">{{ isRotated[1] ? '&#708;' : '&#709;' }}</span>
-                </button>
-                <p v-if="isRotated[1]" class="extra-text">
-                    Custom 3D models are available only for our HVH Designer users. Just simply Contact US via the contact form, or write us on live chat.
-                </p>
-            </div>
-        </div>
-
-        <div class="class">
-            <div class="class1">
-                <button @click="toggle(2)" class="card">
-                    How to download the 3D models?
-                    <span style="color: red; font-weight: 900;">{{ isRotated[2] ? '&#708;' : '&#709;' }}</span>
-                </button>
-                <p v-if="isRotated[2]" class="extra-text">
-                    Once you register you will have access to all our 3D models. It is free !!!
-                </p>
-            </div>
-        </div>
-
-        <div class="class">
-            <div class="class1">
-                <button @click="toggle(3)" class="card">
-                    What is HVH Designer?
-                    <span style="color: red; font-weight: 900;">{{ isRotated[3] ? '&#708;' : '&#709;' }}</span>
-                </button>
-                <p v-if="isRotated[3]" class="extra-text">
-                    HVH Designer is a web-based, affordable 3D CAD modeling software that has a large library of standard 3D models by our partner manufacturers.
-                </p>
-            </div>
-        </div>
-    </div>
+  <div class="max">
+      <h1>Frequently Asked Questions</h1>
+      
+      <div v-for="faq in faqs" :key="faq.id" class="class">
+          <div class="class1">
+              <button @click="toggle(faq.id)" class="card">
+                  {{ faq.question }}
+                  <span style="color: red; font-weight: 900;">
+                      {{ isRotated[faq.id] ? '&#708;' : '&#709;' }}
+                  </span>
+              </button>
+              <p v-if="isRotated[faq.id]" class="extra-text" v-html="faq.answer"></p>
+          </div>
+      </div>
+  </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      faqs: [], // Store FAQ data
+      isRotated: {} // Dynamic state for each FAQ
+    };
+  },
+  mounted() {
+    this.fetchFAQs();
+  },
+  methods: {
+    async fetchFAQs() {
+    try {
+      await this.$store.dispatch('fetchToken');
+
+      const token = this.$store.state.token; 
+      if (!token) {
+        console.error("No token found in Vuex store");
+        return; 
+      }
+
+      const response = await axios.post('https://webapi.hvhdesigner.com/api/get-faqs', {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (response.data.status === "true") {
+        this.faqs = response.data.faqs;
+        this.isRotated = this.faqs.reduce((acc, faq) => {
+          acc[faq.id] = false;
+          return acc;
+        }, {});
+      }
+    } catch (error) {
+      console.error("Error fetching FAQs:", error);
+    }
+  },
+
+    toggle(faqId) {
+      this.isRotated[faqId] = !this.isRotated[faqId];
+    }
+  }
+};
+</script>
 
 <style scoped>
 h1 {
@@ -108,21 +133,3 @@ h1 {
 }
 </style>
 
-<script>
-export default {
-  data() {
-    return {
-      isRotated: {
-        1: false,
-        2: false,
-        3: false
-      }
-    };
-  },
-  methods: {
-    toggle(question) {
-      this.isRotated[question] = !this.isRotated[question];
-    }
-  }
-};
-</script>

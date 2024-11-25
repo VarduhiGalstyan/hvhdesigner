@@ -1,38 +1,142 @@
 <template>
-   <div class="max">
+  <div class="max">
     <div class="login">
       <h1>Login</h1>
-        <div>
-          <label for="Email-or-Login">Email or Login:</label>
-          <input type="text"  id="Email-or-Login" required />
-          <p></p>
-        </div>
+      
+      <div>
+        <label for="Email-or-Login">Email or Login:</label>
+        <input v-model="email" type="text" id="Email-or-Login" required />
+        <p v-if="emailError" class="error-message">{{ emailError }}</p>
+      </div>
 
-        <div>
-          <label for="password">Password:</label>
-          <input type="password"  id="password" required />
-        </div>
+      <div>
+        <label for="password">Password:</label>
+        <input v-model="password" type="password" id="password" required />
+        <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
+      </div>
 
-        <div style="display: flex; ">
-          <input type="checkbox" style="width: 5% !important;"/>
-          <div style="margin-top: 10px;"> Remember Me</div>
-        </div>
+      <div style="display: flex;">
+        <input type="checkbox" v-model="rememberMe" style="width: 5% !important;" />
+        <div style="margin-top: 10px;">Remember Me</div>
+      </div>
 
-        <div class="end">
-          <a href="#" style="color: red; font-weight: 700;     width: 2000px;">Forgot Your Password?</a>
-          <button type="submit" class="button2">Login</button>
-        </div>
+      <div class="end">
+        <a href="#" style="color: red; font-weight: 700; width: 2000px;">Forgot Your Password?</a>
+        <button @click="login" type="submit" class="button2">Login</button>
+      </div>
     </div>
+
     <div class="vidio">
       <video width="100%" height="240" controls>
-        <source src="@/assets/CoolCountdown10,9,8,7,6,5,4,3,2,1.mp4" type="video/mp4">
-        <source src="movie.ogg" type="video/ogg">
+        <source src="@/assets/CoolCountdown10,9,8,7,6,5,4,3,2,1.mp4" type="video/mp4" />
+        <source src="movie.ogg" type="video/ogg" />
       </video>
     </div>
-   </div>
+  </div>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      rememberMe: false,
+      emailError: '',
+      passwordError: ''
+    };
+  },
+  methods: {
+    validateForm() {
+      this.emailError = '';
+      this.passwordError = '';
+      
+      // Ստուգում ենք, եթեlogin/email չկա
+      if (!this.email) {
+        this.emailError = 'The email field is required.';
+      }
+
+      // Ստուգում ենք, եթե passvord բացակայում է
+      if (!this.password) {
+        this.passwordError = 'The password field is required.';
+      }
+
+      return !this.emailError && !this.passwordError;
+    },
+
+    async login() {
+      if (this.validateForm()) {
+        try {
+          // Notework kատարում ենք POST հարցում API-ին
+          const response = await axios.post('https://webapi.hvhdesigner.com/api/login', {
+            email: this.email,
+            password: this.password
+          });
+
+          if (response.data.status) {
+            // Եթե մուտքը հաջող է, ստանում ենք token-ը և պահում այն localStorage-ում
+            const token = response.data.user.auth_token;
+            localStorage.setItem('authToken', token);
+
+            console.log('Successfully logged in', response.data);
+
+            // Ստացված ուղղությունը օգտագործող redirect
+            window.location.href = response.data.redirect;
+          } else {
+            console.error('Login failed', response.data.message);
+          }
+        } catch (error) {
+          console.error('Error during login', error);
+        }
+      }
+    },
+
+    // Օրինակ API հարցում, որտեղ token-ը ուղարկվում է header-ով
+    async fetchData() {
+      try {
+        const token = localStorage.getItem('authToken');
+        
+        // Եթե token չկա, դուրս ենք գալիս
+        if (!token) {
+          console.log('No token found, user is not authenticated');
+          return;
+        }
+
+        // Հնարավոր API հարցում՝ token-ով
+        const response = await axios.get('https://webapi.hvhdesigner.com/api/data', {
+          headers: {
+            Authorization: `Bearer ${token}` // Այստեղ ուղարկվում է token-ը
+          }
+        });
+
+        console.log('Data fetched:', response.data);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    },
+
+    // Դուրս գալy (logout)
+    logout() {
+      // Հանում ենք token-ը localStorage-ից
+      localStorage.removeItem('authToken');
+      window.location.href = '/login'; // Փոխում ենք էջը դեպի մուտքի էջ
+    }
+  }
+};
+</script>
+
+
+
+
 <style scoped>
+p{
+  font-size: 72%;
+    color: #e3342f;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
 .max{
   
     padding: 10px 8% 10% 22%;
