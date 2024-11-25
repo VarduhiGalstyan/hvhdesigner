@@ -1,18 +1,18 @@
 <template>
   <div class="max">
-      <h1>Frequently Asked Questions</h1>
-      
-      <div v-for="faq in faqs" :key="faq.id" class="class">
-          <div class="class1">
-              <button @click="toggle(faq.id)" class="card">
-                  {{ faq.question }}
-                  <span style="color: red; font-weight: 900;">
-                      {{ isRotated[faq.id] ? '&#708;' : '&#709;' }}
-                  </span>
-              </button>
-              <p v-if="isRotated[faq.id]" class="extra-text" v-html="faq.answer"></p>
-          </div>
+    <h1>Frequently Asked Questions</h1>
+
+    <div v-for="faq in faqs" :key="faq.id" class="class">
+      <div class="class1">
+        <button @click="toggle(faq.id)" class="card">
+          {{ faq.question }}
+          <span style="color: red; font-weight: 900;">
+            {{ isRotated[faq.id] ? '&#708;' : '&#709;' }}
+          </span>
+        </button>
+        <p v-if="isRotated[faq.id]" class="extra-text" v-html="faq.answer"></p>
       </div>
+    </div>
   </div>
 </template>
 
@@ -22,46 +22,51 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      faqs: [], 
-      isRotated: {} 
+      faqs: [],
+      isRotated: {},
     };
   },
   mounted() {
-    this.fetchFAQs();
+    if (!this.token) {
+    this.$store.dispatch('fetchToken');
+  }
+  this.fetchFAQs();
+  },
+  computed: {
+    token() {
+      return this.$store.state.token; 
+    },
   },
   methods: {
     async fetchFAQs() {
-    try {
-      await this.$store.dispatch('fetchToken');
-
-      const token = this.$store.state.token; 
-      if (!token) {
-        console.error("No token found in Vuex store");
-        return; 
-      }
-
-      const response = await axios.post('https://webapi.hvhdesigner.com/api/get-faqs', {}, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      try {
+        const token = this.token; 
+        if (!token) {
+          console.error("No token found in Vuex store");
+          return;
         }
-      });
-      
-      if (response.data.status === "true") {
-        this.faqs = response.data.faqs;
-        this.isRotated = this.faqs.reduce((acc, faq) => {
-          acc[faq.id] = false;
-          return acc;
-        }, {});
-      }
-    } catch (error) {
-      console.error("Error fetching FAQs:", error);
-    }
-  },
 
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/get-faqs', {}, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (response.data.status === "true") {
+          this.faqs = response.data.faqs;
+          this.isRotated = this.faqs.reduce((acc, faq) => {
+            acc[faq.id] = false;
+            return acc;
+          }, {});
+        }
+      } catch (error) {
+        console.error("Error fetching FAQs:", error);
+      }
+    },
     toggle(faqId) {
       this.isRotated[faqId] = !this.isRotated[faqId];
-    }
-  }
+    },
+  },
 };
 </script>
 
