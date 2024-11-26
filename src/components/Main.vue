@@ -24,28 +24,13 @@
     <div class="pricing">
       <div class="procong-name">Pricing</div>
       <div class="windows wss">
-        <div class="window">
-          <span class="name">Free</span>
+        <div v-for="pricing in pricingData" :key="pricing.id" class="window">
+          <span class="name">{{ pricing.price }}</span>
+          <span class="mounth-year" v-if="pricing.duration_en">/{{ pricing.duration_en }}</span>
           <p></p>
-          <span class="about">3D parts library</span>
+          <span class="about">{{ pricing.title_en }}</span>
           <p></p>
-          <button class="button2" @click="openRegisterModal"><span> Buy now</span></button>
-        </div>
-        <div class="window">
-          <span class="name">$29</span>
-          <span class="mounth-year">/mouth</span>
-          <p></p>
-          <span class="about">Single user Cad software with our 3D parts library</span>
-          <p></p>
-          <button class="button2" @click="openRegisterModal" ><span>Buy now</span></button>
-        </div>
-        <div class="window">
-          <span class="name">$299</span>
-          <span class="mounth-year">/year</span>
-          <p></p>
-          <span class="about">Single user Cad software with our 3D parts library</span>
-          <p></p>
-          <button class="button2" @click="openRegisterModal" ><span>Buy now</span></button>
+          <button class="button2" @click="openRegisterModal"><span>Buy now</span></button>
         </div>
       </div>
       <div class="windows ws">
@@ -118,7 +103,6 @@
   
   <script>
     import Modal from './Modal.vue';
-    import { mapGetters } from 'vuex';
     import axios from 'axios';
     
     export default {
@@ -133,6 +117,7 @@
       data() {
         return {
           homeInfo: null,  
+          pricingData: [], 
         };
       },
       methods: {
@@ -166,6 +151,21 @@
             console.error('Error fetching home info:', error);
           }
         },
+        async fetchPricingData() {
+          try {
+            const response = await axios.post('https://webapi.hvhdesigner.com/api/get-pricing', {}, {
+              headers: {
+                Authorization: `Bearer ${this.token}`,
+              },
+            });
+
+            if (response.data.status === 'true') {
+              this.pricingData = response.data.pricing;
+            }
+          } catch (error) {
+            console.error('Error fetching pricing data:', error);
+          }
+        },
       },
       
       mounted() {
@@ -173,7 +173,9 @@
           this.$store.dispatch('fetchToken'); 
         }
         console.log('Token from Vuex store:', this.token); 
+
         this.fetchHomeInfo();
+        this.fetchPricingData();
 
       },
     };
