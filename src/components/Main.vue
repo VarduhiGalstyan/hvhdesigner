@@ -3,40 +3,22 @@
     <div class="start">
         <div class="start-text">
           <div>
-            <p>
-              <h1>Engineering Design Software with a Library of Industrial 3D Models</h1>  
+            <p v-if="homeInfo">
+              <span v-html="homeInfo.desc_en"></span>
             </p>
-            <p>
-              <span>
-                Designing equipment has never been easier. HVH Designer is a web-based, affordable 3D CAD modeling software that has a large library of standard 3D models by our partner manufacturers.
-              </span>
-            </p>
-            <p>
-              <span>
-                Engineers spend hours to find the right component for their project, then they spend hours to get the 3D model to use in their 3D assembly, then purchasing department spends hours looking for suppliers for those components. 
-              </span>
-            </p>
-            <p>
-              <span>
-                We have solved all those issues for you. HVH created powerful search tools to make the search process easier. For every component you use from our liberty, HVH is an authorized distributor of the manufacturer of that component. We will have the best price and lead time for you.             
-              </span>
-            </p>
-            <p>
-              <span>
-                HVH Designer is created by engineers for engineers, so you can spend your time on innovation and creativity, not searching for components and suppliers.              </span>
-            </p>
-          </div>
+        </div>
           <div class="buttons">
             <div>
               <button class="button1" @click="openRegisterModal" ><span>REQUEST FREE TRIAL</span></button>
             </div>
             <div>
-       <button class="button2" @click="openRegisterModal" ><span>REQUEST A DWMO</span></button>
+              <button class="button2" @click="openRegisterModal" ><span>REQUEST A DWMO</span></button>
             </div>
           </div> 
         </div>
         <div class="start-img">
-          <img src="../assets/photo-1650836908.png" alt="photo-1650836908.png">
+          <img v-if="homeInfo" :src="`https://webapi.hvhdesigner.com/uploads/images/${homeInfo.photo}`" alt="Start Image">
+          
         </div>
     </div>
     <div class="pricing">
@@ -137,13 +119,21 @@
   <script>
     import Modal from './Modal.vue';
     import { mapGetters } from 'vuex';
+    import axios from 'axios';
     
     export default {
       components: {
         Modal,
       },
       computed: {
-        ...mapGetters(['getToken']), 
+        token() {
+          return this.$store.state.token; 
+        },
+      },
+      data() {
+        return {
+          homeInfo: null,  
+        };
       },
       methods: {
         openRegisterModal() {
@@ -152,12 +142,39 @@
         goToStep() {
           this.$router.push('/step');
         },
+        async fetchHomeInfo() {
+          try {
+            const response = await axios.post('https://webapi.hvhdesigner.com/api/get-home-info', {}, {
+              headers: {
+                Authorization: `Bearer ${this.token}`,
+              },
+            });
+
+            if (response.data.status === 'true') {
+              this.homeInfo = response.data.info[0]; 
+              
+              const concatenatedData = {
+                text_es: this.homeInfo.text_es || '',
+                photo: `../assets/${this.homeInfo.photo}`, 
+                seo_img: this.homeInfo.seo_img || '',
+                updated_by: this.homeInfo.updated_by || '',
+              };
+
+          console.log(concatenatedData);
+            }
+          } catch (error) {
+            console.error('Error fetching home info:', error);
+          }
+        },
       },
+      
       mounted() {
-        if (!this.getToken) {
+        if (!this.token) {
           this.$store.dispatch('fetchToken'); 
         }
-        console.log('Token from Vuex store:', this.getToken); 
+        console.log('Token from Vuex store:', this.token); 
+        this.fetchHomeInfo();
+
       },
     };
   </script>

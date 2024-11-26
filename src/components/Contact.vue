@@ -70,7 +70,6 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -104,13 +103,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getToken']),
+    token() {
+      return this.$store.state.token; 
+    },
   },
   mounted() {
     this.loadRecaptcha();
-    console.log(this.getToken);
+    console.log(this.token);
     
-    if (this.getToken) {
+    if (this.token) {
       this.fetchContactInfo();
     }
   },
@@ -119,7 +120,7 @@ export default {
       try {
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-contact-info', {}, {
           headers: {
-            Authorization: `Bearer ${this.getToken}`,
+            Authorization: `Bearer ${this.token}`,
           },
         });
 
@@ -131,13 +132,13 @@ export default {
           this.contactInfo.contact = info.content;
           this.contactInfo.bgImage = info.bg_image;
 
-          // Dynamically update the background image
           this.backgroundStyle = {
-            backgroundImage: `url('https://webapi.hvhdesigner.com/storage/${this.contactInfo.bgImage}')`,
+            backgroundImage: `url('https://webapi.hvhdesigner.com/uploads/images/${this.contactInfo.bgImage}')`,
           };
         } else {
           console.error('Failed to fetch contact info');
         }
+
       } catch (error) {
         console.error('Error fetching contact info:', error);
       }
@@ -154,7 +155,7 @@ export default {
         console.error('reCAPTCHA script not loaded.');
       }
     },
-    submitForm() {
+    async submitForm() {
       this.errors.name = false;
       this.errors.email = false;
       this.errors.comments = false;
@@ -186,7 +187,29 @@ export default {
       if (!formIsValid) {
         return;
       }
-
+      try {
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/save-contact', {
+          name: this.form.name,
+          email: this.form.email,
+          comments: this.form.comments,
+        }, {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        });
+console.log(response.data); 
+        if (response.data.status === 'success') {
+          console.log('Form successfully submitted:', response.data.contact);
+          alert('Thank you for contacting HVH.');
+          this.clearForm();
+        } else {
+          console.error('Form submission failed:', response.data.message);
+          // alert('There was an issue submitting your form. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        // alert('There was an issue submitting your form. Please try again.');
+      }
       console.log('Form successfully submitted:', this.form);
     },
 
