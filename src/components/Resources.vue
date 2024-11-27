@@ -1,15 +1,11 @@
 <template>
   <div class="resources-max">
     <div class="resources-top">
-      <div class="resources-top-left">
-        <img src="../assets/photo-1651197310.jpg" alt="step-img" />
+      <div v-for="resource in resources" :key="resource.id"  class="resources-top-left">
+        <img :src="`https://webapi.hvhdesigner.com/uploads/images/${resource.photo}`" alt="step-img" />
         <div class="center">
-          <h1>What is a STEP File Format</h1>
-          <span>
-            STEP files, also known as ISO 10303, are an ISO standard exchange
-            format. The letters "STEP" stands for “Standard for the Exchange of
-            Product Data
-          </span>
+          <h1>{{ resource.title_en }}</h1>
+          <span v-html="resource.short_desc_en"></span>
         </div>
       </div>
 
@@ -59,23 +55,18 @@
     </nav>
 
     <div class="end-max">
-      <div class="end">
-        <div class="step-img" style="margin-left: 20px;">
-          <img
-            src="../assets/photo-1651197310.jpg"
-            style="height: 80% !important; width: 80% !important; margin-top: 30px; margin-left: 10%;"
-            alt="step-img"
+      <div v-for="resource in resources" :key="resource.id" class="end">
+        <div class="step-img"   style="margin-left: 20px;">
+          <img :src="'https://webapi.hvhdesigner.com/uploads/images/' + resource.photo" alt="step-img" 
+          style="height: 80% !important; width: 80% !important; margin-top: 30px; margin-left: 10%;"
           />
         </div>
-        <div class="end-information" style="padding: 20px; height: 510px; overflow: hidden; text-align: center;">
-          <a class="blog" href="https://hvhdesigner.com/resource/tech-tips/step-file-format">
-            <span style="color: red !important;">What is a STEP File Format</span>
+        <div class="end-information"  style="padding: 20px; height: 510px; overflow: hidden; text-align: center;">
+          <a class="blog" :href="'https://hvhdesigner.com/resource/' + resource.url"
+          >
+            <span style="color: red !important;">{{ resource.title_en }}</span>
             <p></p>
-            <span style="color: #6c757d !important;">
-              STEP files, also known as ISO 10303, are an ISO standard exchange
-              format. The letters "STEP" stands for “Standard for the Exchange of
-              Product Data
-            </span>
+            <span style="color: #6c757d !important;">{{ resource.short_desc_en }}</span>
           </a>
         </div>
       </div>
@@ -92,7 +83,7 @@ export default {
       email: "", 
       errorMessage: "", 
       activeLink: "all",
-      filter: "All",
+      resources: [],  
       categories: [], 
     };
   },
@@ -125,6 +116,29 @@ export default {
         console.error("Error fetching categories:", error);
       }
     },
+    async fetchResources() {
+      try {
+        if (!this.token) {
+          console.log("Token not available.");
+          return;
+        }
+
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources', {}, {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          }
+        });
+
+        if (response.data.status === 'true') {
+          this.resources = response.data.resources;  
+          
+        } else {
+          console.error('Failed to fetch resources.');
+        }
+      } catch (error) {
+        console.error("Error fetching resources:", error);
+      }
+    },
     handleSubscribe() {
       if (!this.email) {
         this.errorMessage = "The email field is required."; 
@@ -141,15 +155,10 @@ export default {
   mounted() {
     if (this.token) {
       this.fetchCategories();
+      this.fetchResources();
+
     }
   },
-  watch: {
-    token(newToken) {
-      if (newToken) {
-        this.fetchCategories();
-      }
-    }
-  }
 };
 </script>
 
