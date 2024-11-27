@@ -42,24 +42,18 @@
     <nav class="nav">
       <div class="span">Filter by:</div>
       <ul>
-        <li :class="{ active: activeLink === 'all' }" @click="setActive('all')">
-          <i style="font-size:14px; margin-right: 5px;" class="fa">&#xf0c9;</i>
-          All
-        </li>
-        <li :class="{ active: activeLink === 'tutorials' }" @click="setActive('tutorials')">
-          Tutorials
-        </li>
-        <li :class="{ active: activeLink === 'techtips' }" @click="setActive('techtips')">
-          Tech Tips
-        </li>
-        <li :class="{ active: activeLink === 'designtips' }" @click="setActive('designtips')">
-          Design Tips
-        </li>
-        <li :class="{ active: activeLink === 'onlinecourses' }" @click="setActive('onlinecourses')">
-          Online Courses
-        </li>
-        <li :class="{ active: activeLink === 'products' }" @click="setActive('products')">
-          Products
+        <li 
+        :class="{ active: activeLink === 'all' }" 
+        @click="setActive('all')">
+        <i style="font-size:14px; margin-right: 5px;" class="fa">&#xf0c9;</i>
+        All
+      </li>
+        <li 
+          v-for="category in categories" 
+          :key="category.id" 
+          :class="{ active: activeLink === category.title_en.toLowerCase() }" 
+          @click="setActive(category.title_en.toLowerCase())">
+          {{ category.title_en }}
         </li>
       </ul>
     </nav>
@@ -90,6 +84,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -97,9 +93,38 @@ export default {
       errorMessage: "", 
       activeLink: "all",
       filter: "All",
+      categories: [], 
     };
   },
+  computed: {
+    token() {
+      return this.$store.state.token; 
+    },
+  },
   methods: {
+    async fetchCategories() {
+      try {
+        if (!this.token) {
+          console.log("Token not available.");
+          return;
+        }
+
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources-category', {}, {
+          headers: {
+            Authorization: `Bearer ${this.token}` 
+          }
+        });
+
+        if (response.data.status === 'true') {
+          this.categories = response.data.resources_category;
+          console.log('Fetched categories:', this.categories);
+        } else {
+          console.error('Failed to fetch categories.');
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    },
     handleSubscribe() {
       if (!this.email) {
         this.errorMessage = "The email field is required."; 
@@ -110,10 +135,24 @@ export default {
     },
     setActive(link) {
       this.activeLink = link;
+      
     },
   },
+  mounted() {
+    if (this.token) {
+      this.fetchCategories();
+    }
+  },
+  watch: {
+    token(newToken) {
+      if (newToken) {
+        this.fetchCategories();
+      }
+    }
+  }
 };
 </script>
+
 
 <style scoped>
 .class1{
