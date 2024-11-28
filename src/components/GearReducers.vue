@@ -1,96 +1,67 @@
 <template>
-    <div class="max">
-      <div class="cell">
-        <img src="../assets/3dpartsImg/1gearReducers.png" alt="1gearReducers">
-        <span >Gear Reducers</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/2bearings.png" alt="2bearings">
-        <span >Bearings</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/3electricMotors.png" alt="3electricMotors">
-        <span>Electric Motors</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/4gearmotor.png" alt="4gearmotor">
-        <span >Gearmotor</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/5belt-and-pulley.png" alt="5belt-and-pulley">
-        <span> Belt and Pulley</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/6gear-and-gear-rack.png" alt="6gear-and-gear-rack">
-        <span >Gear & Gear Rack</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/7Tslots.png" alt="7Tslots">
-        <span >Aluminum Extrusions & Accessories</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/8LinerMotion.png" alt="8LinerMotion">
-        <span >Liner Motion</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/9electrical-and-automation.png" alt="9electrical-and-automation">
-        <span>Electrical and Automation</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/10desmipumps.png" alt="10desmipumps">
-        <span >Desmipumps</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/11Sprocket.png" alt="11Sprocket">
-        <span>Chains & Sprockets</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/12ClutchProds.png" alt="12ClutchProds">
-        <span >Clutches and Brakes</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/13Shaft.png" alt="13Shaft">
-        <span >Shaft and Coup</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/14keyless-locking-devices.png" alt="14keyless">
-        <span >Keyless Locking Devices</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/15Lubrication.png" alt="15Lubrication">
-        <span>Lubrication, Chemicals and Equipment</span>
-      </div>
-      <div class="cell">
-       <img src="../assets/3dpartsImg/16Material-Handling.png" alt="16Material-Handling">
-        <span >Material Handling</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/17machining.png" alt="17machining">
-        <span>Machining</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/18Hand&Power-Tools.png" alt="Hand&Power Tools">
-        <span >Hand & Power Tools</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/19Hydraulics&Pneumatics.png" alt="19Hydraulics&Pneumatics">
-        <span>Hydraulics & Pneumatics</span>
-      </div>
-      <div class="cell">
-       <img src="../assets/3dpartsImg//20safety.png" alt="20safety">
-        <span >Safety</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/21Seals.png" alt="21Seals">
-        <span>Seals</span>
-      </div>
-      <div class="cell">
-        <img src="../assets/3dpartsImg/22Fasteners.png" alt="22Fasteners">
-        <span >Fasteners</span>
-      </div>
+  <div class="max">
+    <div v-for="part in parts" :key="part.id" class="cell">
+      <img :src="part.imgUrl" :alt="part.title">
+      <span>{{ part.title }}</span>
     </div>
+  </div>
 </template>
+
+<script>
+import axios from 'axios'; 
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      parts: [], 
+    };
+  },
+  computed: {
+    token() {
+      return this.$store.state.token; 
+    },
+  },
+
   
+  methods: {
+    async fetchParts() {
+      try {
+        if (this.token) {
+          const response = await axios.post(
+            'https://webapi.hvhdesigner.com/api/get-3d-parts',
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${this.token}`,
+              },
+            }
+          );
+          if (response.data.status === 'true') {
+            this.parts = response.data.parts.map((part) => ({
+              id: part.id,
+              title: part.title,
+              imgUrl: `https://hvhindustrial.com/images/frontend_images/categories/${part.filename}`, 
+            }));
+          } else {
+            console.error('Failed to fetch parts');
+          }
+        } else {
+          console.error('No token available');
+        }
+      } catch (error) {
+        console.error('Error fetching parts:', error);
+      }
+    },
+  },
+  created() {
+    this.$store.dispatch('fetchToken').then(() => {
+      this.fetchParts(); 
+    });
+  },
+};
+</script>
+
 <style scoped>
 .max{
   max-width: 1220px;

@@ -62,7 +62,7 @@
           />
         </div>
         <div class="end-information"  style="padding: 20px; height: 510px; overflow: hidden; text-align: center;">
-          <a class="blog" :href="'https://hvhdesigner.com/resource/' + resource.url"
+          <a @click.prevent="goToStep"  class="blog" :href="'https://hvhdesigner.com/resource/' + resource.url"
           >
             <span style="color: red !important;">{{ resource.title_en }}</span>
             <p></p>
@@ -93,6 +93,9 @@ export default {
     },
   },
   methods: {
+    goToStep() {
+      this.$router.push('/step');
+    },
     async fetchCategories() {
       try {
         if (!this.token) {
