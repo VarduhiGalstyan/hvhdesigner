@@ -3,7 +3,7 @@
       <div class="header">
           <div class="img">
               <img 
-                  :src="logoUrl" 
+                  :src="require('../assets/logo-1644232788.jpeg')" 
                   alt="Header Image" 
                   class="header-image" 
                   @click="setActive('main')" 
@@ -43,7 +43,7 @@
                     @click="setActive('login')" >Login
                   </li>
                   <li class="register" 
-                    :class="{ active: activeLink === 'register' }" @click="openRegisterModal" style="margin-left: 0;">
+                    :class="{ active: activeLink === 'register' }" @click="openRegisterModal">
                       Register
                   </li>
                 </ul>
@@ -56,7 +56,6 @@
 
 <script >
 import Modal from './Modal.vue';
-
 export default {
   components:{
     Modal,
@@ -66,14 +65,6 @@ export default {
       activeLink: '',
       menuVisible: false,
     };
-  },
-  computed: {
-    settings() {
-      return this.$store.state.settings; 
-    },
-    logoUrl() {
-      return this.settings ? `https://webapi.hvhdesigner.com/uploads/images/${this.settings.logo}` : ''; 
-    },
   },
   methods: {
     setActive(link) {
@@ -108,20 +99,16 @@ export default {
       this.menuVisible = !this.menuVisible;
     },
     openRegisterModal() {
-      this.$refs.registerModal.openRegisterModal();  
+      this.$refs.registerModal.openRegisterModal();  // Կանչել Modal-ի openRegisterModal մեթոդը
     }, 
   },
-  mounted() {
-    this.$store.dispatch('fetchSettings'); 
-  },
-
 };
 </script>
 
 <style scoped>
 
 header {
-  padding: 0 0 0 0;
+  padding: 0;
   background-color: #fff !important;
   width: 100%;
   background: #fff;
@@ -132,6 +119,9 @@ header {
   position: relative;
   display: flex;
   box-shadow: 1px 1px 8px #afa7a7e0, 0 6px 20px #8c85851f !important;
+  /* display: flex;
+  align-items: center; */
+  /* padding-left: 20px; */
 }
 .header{
   width: 100%;
@@ -157,6 +147,7 @@ header {
 }
 
 nav {
+  /* flex-grow: 1; */
   justify-content: space-between;
 }
 
@@ -166,6 +157,8 @@ nav ul {
   justify-content: space-between;
   display: flex;
   list-style: none;
+  /* padding: 0;
+  margin: 0; */
 }
 
 
@@ -183,7 +176,7 @@ nav li {
   display: list-item;
   text-align: -webkit-match-parent;
   unicode-bidi: isolate;
-  margin-left: 20px; 
+  margin-left: 20px; /* Space between nav items */
   cursor: pointer;
 }
 
@@ -193,14 +186,16 @@ nav li.active {
 
 .log-reg{
   padding-left: 13%;
-  align-items: center;
-  display: flex;
 }
- .LoginRegister ul li{
-  background-color: #9191911a;
-  color: #333;
-  padding: 11px 43px;
- }
+.LoginRegister{
+  margin-left: 20px;
+  align-items: center;
+  background-color: #f9f9f9;
+  /* padding-right: 30px; */
+  padding-left: 0px;
+  height: 50px;
+  display: flex !important;
+}
 .hamburger {
   background-color: #333;
   border: 1px solid transparent;
@@ -252,6 +247,8 @@ align-items: start;
 .login{
   list-style: none;
   text-transform: none  !important;
+  /* background-color: #f9f9f9; */
+  /* padding-left: px; */
   padding-right: 20px;
   border-right: 1px solid #ccc;
   color: #333;
@@ -263,6 +260,10 @@ align-items: start;
   list-style: none;
   border-right: 0px solid #ccc !important;
   text-transform: none  !important;
+  /* background-color: #f9f9f9; */
+  /* padding-left: 15px; */
+  /* padding-right: 15px; */
+  /* border-right: 1px solid #ccc; */
   color: #333;
   display: list-item;
   text-align: -webkit-match-parent;
@@ -281,7 +282,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.5); 
+background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 display: flex;
 justify-content: center;
 align-items: center;
@@ -331,7 +332,6 @@ color: #000000;;
 cursor: pointer;
 text-decoration: none;
 }
-
 @media only screen and (max-width: 1111px){
   .log-reg{
     padding-left: 5% !important;
@@ -354,13 +354,6 @@ nav li{
 nav ul{
   padding-left: 1px;
 }
-}
-@media only screen and (max-width: 1284px){
-  .LoginRegister ul li{
-  background-color: #9191911a;
-  color: #333;
-  padding: 11px 22px;
- }
 }
 @media only screen and (min-width: 768px){
   .hamburger{

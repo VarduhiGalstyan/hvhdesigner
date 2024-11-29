@@ -43,7 +43,7 @@ const store = createStore({
     },
   },
 
-  async fetchSettings({ commit }) {
+  async fetchSettings({ commit, state }) {
     try {
       if (!state.token) {
         console.error("No token available, cannot fetch settings");
