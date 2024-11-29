@@ -5,14 +5,20 @@ const store = createStore({
   state() {
     return {
       token: null,  
+      settings: null, //API 17
     };
   },
   getters: {
     getToken: (state) => state.token,  
+    getSettings: (state) => state.settings,
+    getLogo: (state) => state.settings?.logo, // Get the logo URL
   },
   mutations: {
     setToken(state, token) {
       state.token = token; 
+    },
+    setSettings(state, settings) {
+      state.settings = settings;  
     },
   },
   actions: {
@@ -35,6 +41,34 @@ const store = createStore({
         console.error("Error during login:", error);
       }
     },
+  },
+
+  async fetchSettings({ commit }) {
+    try {
+      if (!state.token) {
+        console.error("No token available, cannot fetch settings");
+        return;
+      }
+      
+      const response = await axios.post(
+        'https://webapi.hvhdesigner.com/api/get-settings',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`, 
+          }
+        }
+      );
+
+      if (response.data.status) {
+        commit('setSettings', response.data.settings);  
+        console.log('Settings fetched successfully:', response.data.settings);
+      } else {
+        console.log('Failed to fetch settings');
+      }
+    } catch (error) {
+      console.error("Error fetching settings:", error);
+    }
   },
 });
 
