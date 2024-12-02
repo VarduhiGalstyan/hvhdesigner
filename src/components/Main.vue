@@ -34,7 +34,10 @@
         </div>
       </div>
       <div class="windows ws">
-        <div class="windows-img"> 
+        <div v-if="homeInfo"> 
+              <div v-html="homeInfo.text_en"></div>
+        </div>
+        <!-- <div class="windows-img"> 
           <img src="../assets/1593812195566_1651022973.jpg" alt="image" style="float: left; height: 423px; max-width: 500px; ">
         </div>
         <div class="windows-information1">
@@ -51,9 +54,9 @@
             <li>With one click you can submit your bill of material for quotation</li>
             <li>Individual approach to every customer of every size. There are no small or big customers for us </li>
           </ul>
-        </div>
+        </div> -->
       </div>
-      <div class="windows ws">
+      <!-- <div class="windows ws">
         <div class="windows-information1">
           <h1 >What you can do with HVH Designer</h1>
           <ul>
@@ -66,8 +69,8 @@
         </div>
         <div class="windows-img2"> 
           <img src="../assets/Untitled.png" alt="image2" style="float: right; height: 400px;margin: 30px; width: 400px;">
-        </div>
-      </div>
+        </div> 
+      </div> -->
       <div>
         <p><hr></p>
         <div class="end-max">
@@ -110,9 +113,7 @@
         Modal,
       },
       computed: {
-        token() {
-          return this.$store.state.token; 
-        },
+    
       },
       data() {
         return {
@@ -130,10 +131,13 @@
         async fetchHomeInfo() {
           try {
             const response = await axios.post('https://webapi.hvhdesigner.com/api/get-home-info', {}, {
+           
               headers: {
-                Authorization: `Bearer ${this.token}`,
+                Authorization: `Bearer ${this.$store.state.token}`,
               },
             });
+            console.log(this);
+
 
             if (response.data.status === 'true') {
               this.homeInfo = response.data.info[0]; 
@@ -155,7 +159,7 @@
           try {
             const response = await axios.post('https://webapi.hvhdesigner.com/api/get-pricing', {}, {
               headers: {
-                Authorization: `Bearer ${this.token}`,
+                Authorization: `Bearer ${this.$store.state.token}`,
               },
             });
 
@@ -169,19 +173,21 @@
       },
       
       mounted() {
-        if (!this.token) {
-          this.$store.dispatch('fetchToken'); 
-        }
-        console.log('Token from Vuex store:', this.token); 
+        this.$store.dispatch('fetchToken');
 
-        this.fetchHomeInfo();
-        this.fetchPricingData();
+        setTimeout(()=>{
+          this.fetchPricingData();
+          this.fetchHomeInfo();
+        }, 1000);
 
       },
     };
   </script>
   
-  <style scoped>
+  <style >
+ .ws img{
+  width: 200px;
+ }
   main {
     background-color: #f9f9f9;
     padding: 40px 22% 10% 22%;

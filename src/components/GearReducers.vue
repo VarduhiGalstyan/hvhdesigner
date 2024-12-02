@@ -17,23 +17,16 @@ export default {
       parts: [], 
     };
   },
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
-
   
   methods: {
     async fetchParts() {
       try {
-        if (this.token) {
           const response = await axios.post(
             'https://webapi.hvhdesigner.com/api/get-3d-parts',
             {},
             {
               headers: {
-                Authorization: `Bearer ${this.token}`,
+                Authorization: `Bearer ${this.$store.state.token}`,
               },
             }
           );
@@ -46,18 +39,18 @@ export default {
           } else {
             console.error('Failed to fetch parts');
           }
-        } else {
-          console.error('No token available');
-        }
+        
       } catch (error) {
         console.error('Error fetching parts:', error);
       }
     },
   },
-  created() {
-    this.$store.dispatch('fetchToken').then(() => {
-      this.fetchParts(); 
-    });
+  mounted() {
+    this.$store.dispatch('fetchToken');
+
+    setTimeout(()=>
+      this.fetchParts()
+        , 1000); 
   },
 };
 </script>

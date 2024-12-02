@@ -29,9 +29,34 @@
           {{ errorMessage }}
         </p>
         <p></p>
-        <button class="button2" @click="handleSubscribe">
+        <button class="button2" @click="openModal">
           <span>Subscribe</span>
         </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div v-if="modalVisible" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-close" @click="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <!-- reCAPTCHA widget -->
+          <div class="recaptcha" ref="recaptcha">
+          </div>
+          <p v-if="recaptchaError" class="error-text recaptcha" 
+              style="
+                height: 5px !important;
+                color: #a94442 !important;
+                font-weight: bolder;
+                line-height: normal;
+              ">Please ensure that you are a human!</p>
+          <p></p>
+          <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+          <button @click="handleSubscribe" class="confirm-btn">Save</button>
+        </div>
       </div>
     </div>
 
@@ -85,27 +110,78 @@ export default {
       activeLink: "all",
       resources: [],  
       categories: [], 
+      modalVisible: false,
+      recaptchaResponse: "", 
+      reCaptchaKey: '6LeM93UqAAAAANmkFsRO3_-8A75F5CiR4TrmOqtY', 
+      loading: false, 
     };
   },
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
+
   methods: {
     goToStep() {
       this.$router.push('/step');
     },
+
+    openModal() {
+      if (!this.email) {
+        this.errorMessage = "The email field is required."; 
+        return;
+      } 
+      if (!this.validateEmail(this.email)) {
+        this.errorMessage = "Please enter a valid email address.";
+        return;
+      }
+      this.errorMessage = ""; 
+      this.modalVisible = true;  
+    },
+
+    closeModal() {
+      this.modalVisible = false; 
+    },
+
+    handleRecaptchaResponse(response) {
+      this.recaptchaResponse = response;
+    },
+
+    async handleSubscribe() {
+      if (!this.recaptchaResponse) {
+        this.errorMessage = "Please complete the reCAPTCHA."; 
+        return;
+      }
+
+      try {
+        this.loading = true; 
+        const response = await axios.post(
+          'https://webapi.hvhdesigner.com/api/email-validate', 
+          { email: this.email, recaptchaResponse: this.recaptchaResponse },
+          { 
+            headers: {
+              Authorization: `Bearer ${this.$store.state.token}`,
+            }
+          }
+        );
+
+        this.loading = false; 
+
+        if (response.data.success) {
+          this.errorMessage = "";  
+          this.closeModal();  
+          alert(response.data.message);  
+        } else {
+          this.errorMessage = "Please click to confirm.";  
+        }
+      } catch (error) {
+        this.loading = false; 
+        console.error("Subscription failed:", error);
+        this.errorMessage = "An error occurred. Please try again.";  
+      }
+    },
+
     async fetchCategories() {
       try {
-        if (!this.token) {
-          console.log("Token not available.");
-          return;
-        }
-
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources-category', {}, {
           headers: {
-            Authorization: `Bearer ${this.token}` 
+            Authorization: `Bearer ${this.$store.state.token}`,
           }
         });
 
@@ -119,22 +195,17 @@ export default {
         console.error("Error fetching categories:", error);
       }
     },
+
     async fetchResources() {
       try {
-        if (!this.token) {
-          console.log("Token not available.");
-          return;
-        }
-
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources', {}, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           }
         });
 
         if (response.data.status === 'true') {
           this.resources = response.data.resources;  
-          
         } else {
           console.error('Failed to fetch resources.');
         }
@@ -145,16 +216,11 @@ export default {
 
     async fetchResourcesByCategory(catId) {
       try {
-        if (!this.token) {
-          console.log("Token not available.");
-          return;
-        }
-
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources-by-category', {
           cat_id: catId
         }, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           }
         });
 
@@ -168,39 +234,111 @@ export default {
       }
     },
 
-    handleSubscribe() {
-      if (!this.email) {
-        this.errorMessage = "The email field is required."; 
+    setActive(link) {
+      this.activeLink = link;
+
+      if (link === "all") {
+        this.fetchResources();  
       } else {
-        this.errorMessage = ""; 
-        console.log("Email submitted: " + this.email);
+        const category = this.categories.find(cat => cat.title_en.toLowerCase() === link);
+        if (category) {
+          this.fetchResourcesByCategory(category.id); 
+        }
       }
     },
-    setActive(link) {
-    this.activeLink = link;
-    
-    if (link === "all") {
-      this.fetchResources();  
-    } else {
-      const category = this.categories.find(cat => cat.title_en.toLowerCase() === link);
-      if (category) {
-        this.fetchResourcesByCategory(category.id); 
-      }
+
+    validateEmail(email) {
+      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return regex.test(email);
     }
   },
-  },
+
   mounted() {
-    if (this.token) {
+    this.$store.dispatch('fetchToken');
+    setTimeout(() => {
       this.fetchCategories();
       this.fetchResources();
+    }, 1000);
 
-    }
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${this.reCaptchaKey}`;
+    script.async = true;
+    script.onload = () => {
+      console.log('reCAPTCHA script loaded successfully');
+      grecaptcha.ready(() => {
+        grecaptcha.execute(this.reCaptchaKey, { action: 'subscribe' })
+          .then((token) => {
+            this.recaptchaResponse = token;
+          });
+      });
+    };
+    document.head.appendChild(script);
   },
 };
 </script>
 
 
+
+
 <style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.g-recaptcha {
+  margin: 20px 0;
+  max-width: 100%;
+}
+
+.confirm-btn {
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
 .class1{
   background: #f9f9f9;
     border-radius: 8px;

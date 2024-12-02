@@ -16,27 +16,21 @@ export default {
             privacyPolicyContent: '', 
         };
     },
-    computed: {
-        token() {
-            return this.$store.state.token; 
-        },
-    },
+    
     mounted() {
-        this.fetchPrivacyPolicy();
+        this.$store.dispatch('fetchToken');
+
+        setTimeout(()=>
+            this.fetchPrivacyPolicy()
+        , 1000); 
     },
     methods: {
         async fetchPrivacyPolicy() {
             try {
-                const token = this.token; 
-                
-                if (!token) {
-                    console.error("No token found.");
-                    return;
-                }
 
                 const config = {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${this.$store.state.token}`,
                     },
                 };
 

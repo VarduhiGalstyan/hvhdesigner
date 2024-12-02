@@ -18,18 +18,18 @@ export default {
       termsContent: null,  
     };
   },
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
-  created() {
-    this.fetchTermsAndConditions();
+
+  mounted() {
+    this.$store.dispatch('fetchToken');
+
+    setTimeout(()=>
+    this.fetchTermsAndConditions()
+        , 1000); 
   },
   methods: {
     fetchTermsAndConditions() { axios.post('https://webapi.hvhdesigner.com/api/get-terms-and-conditions',{},{
             headers: {
-              Authorization: `Bearer ${this.token}`, 
+              Authorization: `Bearer ${this.$store.state.token}`,
             },
           }
         )

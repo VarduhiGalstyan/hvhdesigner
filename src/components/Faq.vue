@@ -27,28 +27,20 @@ export default {
     };
   },
   mounted() {
-    if (!this.token) {
     this.$store.dispatch('fetchToken');
-  }
-  this.fetchFAQs();
+
+    setTimeout(()=>
+      this.fetchFAQs()
+    , 1000); 
   },
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
+  
   methods: {
     async fetchFAQs() {
       try {
-        const token = this.token; 
-        if (!token) {
-          console.error("No token found in Vuex store");
-          return;
-        }
 
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-faqs', {}, {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
 

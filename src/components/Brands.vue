@@ -21,16 +21,15 @@ export default {
             brandInfo: { content: '' },
         };
     },
-  
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
    
   mounted() {
-    this.fetchBrandsInfo();
-    this.fetchBrands();
+    this.$store.dispatch('fetchToken');
+
+    setTimeout(()=>{
+      this.fetchBrandsInfo();
+      this.fetchBrands();
+      }, 1000);
+    
   },
 
   methods: {
@@ -38,7 +37,7 @@ export default {
       try {
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-brand-info', {}, {
           headers: {
-            'Authorization': `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
 
@@ -54,7 +53,7 @@ export default {
       try {
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-brands', {}, {
           headers: {
-            'Authorization': `Bearer ${this.token}`, 
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
 

@@ -102,25 +102,21 @@ export default {
       backgroundStyle: {},
     };
   },
-  computed: {
-    token() {
-      return this.$store.state.token; 
-    },
-  },
+  
   mounted() {
-    this.loadRecaptcha();
-    console.log(this.token);
-    
-    if (this.token) {
-      this.fetchContactInfo();
-    }
+    this.$store.dispatch('fetchToken');
+
+    setTimeout(()=>
+    this.fetchContactInfo()
+    , 1000); 
+  
   },
   methods: {
     async fetchContactInfo() {
       try {
         const response = await axios.post('https://webapi.hvhdesigner.com/api/get-contact-info', {}, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
 
@@ -194,7 +190,7 @@ export default {
           comments: this.form.comments,
         }, {
           headers: {
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
 console.log(response.data); 

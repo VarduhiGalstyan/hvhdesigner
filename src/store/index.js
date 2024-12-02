@@ -34,6 +34,7 @@ const store = createStore({
         if (response.data.status) {
           commit('setToken', response.data.token);
           console.log('Successfully logged in:', response.data.token);
+
         } else {
           console.log('Login failed');
         }

@@ -107,7 +107,7 @@ export default {
         // Հնարավոր API հարցում՝ token-ով
         const response = await axios.get('https://webapi.hvhdesigner.com/api/data', {
           headers: {
-            Authorization: `Bearer ${token}` // Այստեղ ուղարկվում է token-ը
+            Authorization: `Bearer ${this.$store.state.token}`,
           }
         });
 

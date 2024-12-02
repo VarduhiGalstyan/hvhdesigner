@@ -55,7 +55,6 @@
 export default {
   data() {
     return {
-      token: this.$store.state.token, 
       resource: null, 
       authorInfo: null,
     };
@@ -81,7 +80,7 @@ export default {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.token}`, 
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
         });
         
@@ -105,7 +104,7 @@ export default {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.token}`, 
+            Authorization: `Bearer ${this.$store.state.token}`,
           },
           body: JSON.stringify({
             url: url, 
@@ -125,8 +124,12 @@ export default {
     },
   },
   mounted() {
-    this.fetchResourceByUrl('freewheels-design-and-applications'); 
-    this.fetchResourceData(); 
+    this.$store.dispatch('fetchToken');
+
+        setTimeout(()=>{
+            this.fetchResourceByUrl('freewheels-design-and-applications'); 
+            this.fetchResourceData(); 
+        }, 1000);
   },
 };
 </script>
