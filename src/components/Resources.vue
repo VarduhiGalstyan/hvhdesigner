@@ -177,15 +177,22 @@ export default {
       }
     },
     setActive(link) {
-      this.activeLink = link;
-      
-    },
+    this.activeLink = link;
+    
+    if (link === "all") {
+      this.fetchResources();  
+    } else {
+      const category = this.categories.find(cat => cat.title_en.toLowerCase() === link);
+      if (category) {
+        this.fetchResourcesByCategory(category.id); 
+      }
+    }
+  },
   },
   mounted() {
     if (this.token) {
       this.fetchCategories();
       this.fetchResources();
-      // this.fetchResourcesByCategory(null); 
 
     }
   },

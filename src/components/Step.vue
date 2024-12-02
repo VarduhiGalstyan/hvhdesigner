@@ -32,14 +32,13 @@
         <div style="padding-bottom: 30px;
            border-bottom: 1px solid rgb(221, 221, 221);">
         </div>
-        <div class="left-right">
+        <div class="left-right" v-if="authorInfo">
             <div class="VladImg">
-                <img class="imgVlad" src="../assets/image-1645767480.png
-                " alt="">
+                <img class="imgVlad" :src="`https://webapi.hvhdesigner.com/uploads/images/${authorInfo.image}`" alt="Author Image">
             </div>
-            <div class="VladInfo">
-                <p class="name">Vladimir Harutyunyan</p>
-                <span>Vladimir Harutyunyan is the founder of HVH Industrial. He has masters degree in mechanical engineering and over 10 years of experience in mechanical power transmission field. </span>
+            <div class="VladInfo" >
+                <p class="name">{{ authorInfo.title }}</p>
+                <span v-html="authorInfo.description"></span>
                 <p></p>
                 <span>Feel free to connect with Vlad on Linkedin: <a href="https://www.linkedin.com/in/vladharut" style="color: #2980b9;">https://www.linkedin.com/in/vladharut</a></span>
                 <p></p>
@@ -58,6 +57,7 @@ export default {
     return {
       token: this.$store.state.token, 
       resource: null, 
+      authorInfo: null,
     };
   },
   methods: {
@@ -72,6 +72,30 @@ export default {
     shareOnTwiiter() {
       const shareURL = "https://x.com/?lang=en";
       window.open(shareURL, "_blank", "width=600,height=400");
+    },
+    async fetchResourceData() {
+      const apiUrl = 'https://webapi.hvhdesigner.com/api/get-resources';
+      
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.token}`, 
+          },
+        });
+        
+        const data = await response.json();
+        
+        if (data.status === 'true') {
+          this.resource = data.resource;
+          this.authorInfo = data.author_info;  
+        } else {
+          console.error('Failed to fetch resource:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching resource:', error);
+      }
     },
     async fetchResourceByUrl(url) {
       const apiUrl = 'https://webapi.hvhdesigner.com/api/get-resources-by-url';
@@ -102,6 +126,7 @@ export default {
   },
   mounted() {
     this.fetchResourceByUrl('freewheels-design-and-applications'); 
+    this.fetchResourceData(); 
   },
 };
 </script>
