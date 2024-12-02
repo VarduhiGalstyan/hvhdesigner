@@ -1,9 +1,16 @@
 <template>
     <div class="max">
         <h1>What is a STEP File Format</h1>
-        <div class="stepimgdiv">
-            <img class="stepimg" src="../assets/photo-1651197310.jpg" alt="imgStep">
+        <div v-if="resource" class="resource-content">
+            <h2 >{{ resource.title_en }}</h2>
+            <img :src="'https://webapi.hvhdesigner.com/uploads/images/photo-1651197310.jpg'" 
+                alt="step-img" 
+                style="height: 80% !important; width: 80% !important; margin-top: 30px; margin-left: 10%;"
+            />
+            <div v-html="resource.desc_en" style="color: #77787b;"></div>            
         </div>
+
+
         <div class="social-container">
             <div class="social-item">
                 <a href="https://www.facebook.com/" @click.prevent="shareOnFacebook">
@@ -21,23 +28,7 @@
                 </a>
             </div>
         </div>
-        <span style="font-size: 18px;">There are so many CAD software and each has its own file extensions, but many times engineers have to exchange CAD files from company to company and use CAD models that were created in one software in another. When each software has its own file extension and can be used only by that software then we have a problem.  </span>
-        <p class="p">What could be a solution to this? </p>
-        <p>A universal file extension that can be used to exchange data from one software to another. </p>
-        <p>STEP files, also known as ISO 10303, are an ISO standard exchange format. The letters "STEP" stands for “Standard for the Exchange of Product Data”.  The file extensions used for STEP-files are .step and .stp.</p>
-        <p>The ISO (International Organization for Standardization) committee first developed the STEP format in the mid-1980s as a universal file format to exchange data between different software programs and enable the exchange of 3D models and designs. </p>
-        <p>Besides cross-platform compatibility, a STEP file maintains a high level of accuracy, especially compared to STL files. A STEP file reads and saves the entire body of a 3D model, rather than just basic geometries, with a high level of precision. This is why STEP files are so popular when detailed 3D models are required, such as for machining or 3D printing.</p>
-        <p class="p">STEP vs STL</p>
-        <p>If we compare STEP files and STL files, STL files only describe the exterior geometry of a model as a mesh, a STEP file saves the entire body of a 3D model. Meshes are a compilation of small figures and geometries that make up the outline of a part. This is why they don't provide as high accuracy as the STEP files. </p>
-        <p>Since STEP file saves the entire body of a 3D model, they can be customized up to an extent. For example, someone can design gear with a pilot bore in AutoCAD save it as STEP file, and send it to a SolidWorks user. The SolidWorks user can open the file draw a bore and keyway and use it for machining, in 3D assembly, save it as STL or other formats.  </p>
-        <p>&nbsp;</p>
-        <p>In summary, there are two main advantages that contributed to the STEP file format’s success: compatibility and accuracy.</p>
-        <p>&nbsp;</p>
-        <p>HVH Designer has a large selection of standard power transmission, motion control, and automation components in STEP format. You can use our liberty when designing equipment with HVH Designer or download and use it with other software. </p>
-        <p>&nbsp;</p>
-        <p>The library is <strong>FREE</strong>. </p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+       
         <div style="padding-bottom: 30px;
            border-bottom: 1px solid rgb(221, 221, 221);">
         </div>
@@ -63,6 +54,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      token: this.$store.state.token, 
+      resource: null, 
+    };
+  },
   methods: {
     shareOnFacebook() {
       const shareURL = "https://www.facebook.com/";
@@ -76,6 +73,35 @@ export default {
       const shareURL = "https://x.com/?lang=en";
       window.open(shareURL, "_blank", "width=600,height=400");
     },
+    async fetchResourceByUrl(url) {
+      const apiUrl = 'https://webapi.hvhdesigner.com/api/get-resources-by-url';
+      
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.token}`, 
+          },
+          body: JSON.stringify({
+            url: url, 
+          }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.status === 'true') {
+          this.resource = data.resource; 
+        } else {
+          console.error('Failed to fetch resource:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching resource:', error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchResourceByUrl('freewheels-design-and-applications'); 
   },
 };
 </script>

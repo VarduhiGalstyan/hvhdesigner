@@ -185,7 +185,7 @@ export default {
     if (this.token) {
       this.fetchCategories();
       this.fetchResources();
-      this.fetchResourcesByCategory(null); 
+      // this.fetchResourcesByCategory(null); 
 
     }
   },
