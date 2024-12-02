@@ -142,6 +142,32 @@ export default {
         console.error("Error fetching resources:", error);
       }
     },
+
+    async fetchResourcesByCategory(catId) {
+      try {
+        if (!this.token) {
+          console.log("Token not available.");
+          return;
+        }
+
+        const response = await axios.post('https://webapi.hvhdesigner.com/api/get-resources-by-category', {
+          cat_id: catId
+        }, {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          }
+        });
+
+        if (response.data.status === 'true') {
+          this.resources = response.data.resources;  
+        } else {
+          console.error('Failed to fetch resources for category.');
+        }
+      } catch (error) {
+        console.error("Error fetching resources by category:", error);
+      }
+    },
+
     handleSubscribe() {
       if (!this.email) {
         this.errorMessage = "The email field is required."; 
@@ -159,6 +185,7 @@ export default {
     if (this.token) {
       this.fetchCategories();
       this.fetchResources();
+      this.fetchResourcesByCategory(null); 
 
     }
   },
