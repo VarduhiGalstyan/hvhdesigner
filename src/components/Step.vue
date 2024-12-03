@@ -34,13 +34,12 @@
         </div>
         <div class="left-right" v-if="authorInfo">
             <div class="VladImg">
-                <img class="imgVlad" :src="`https://webapi.hvhdesigner.com/uploads/images/${authorInfo.image}`" alt="Author Image">
+                <img class="imgVlad" :src="`https://webapi.hvhdesigner.com/uploads/images/authors/${authorInfo.image}`" alt="Author Image">
             </div>
             <div class="VladInfo" >
                 <p class="name">{{ authorInfo.title }}</p>
                 <span v-html="authorInfo.description"></span>
                 <p></p>
-                <span>Feel free to connect with Vlad on Linkedin: <a href="https://www.linkedin.com/in/vladharut" style="color: #2980b9;">https://www.linkedin.com/in/vladharut</a></span>
                 <p></p>
             </div>
         </div>
@@ -77,7 +76,7 @@ export default {
       
       try {
         const response = await fetch(apiUrl, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.$store.state.token}`,
@@ -85,10 +84,10 @@ export default {
         });
         
         const data = await response.json();
+        console.log("56464");
         
         if (data.status === 'true') {
-          this.resource = data.resource;
-          this.authorInfo = data.author_info;  
+          this.authorInfo = data.resources[0].author_info;  
         } else {
           console.error('Failed to fetch resource:', data);
         }
