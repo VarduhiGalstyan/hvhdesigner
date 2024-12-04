@@ -284,6 +284,7 @@ h1 {
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    margin-left: 0 !important;
     width: 100%;
     border: 0;
     border-top: 1px solid rgba(182, 180, 180, 0.28);
@@ -436,7 +437,14 @@ input {
   .max{
     padding-left: 5% ;
   }
+  hr{
+    margin: 0 !important;
+  }
 }
+@media only screen and (min-width: 1200px){
+
+}
+
 @media only screen and (max-width: 991px){
   .max{
     display: flex;

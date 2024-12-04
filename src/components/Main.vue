@@ -72,7 +72,7 @@
         </div> 
       </div> -->
       <div>
-        <p><hr></p>
+        <p><hr class="hr"></p>
         <div class="end-max">
           <div class="end">
             <div class="step-img" style="margin-left: 20px;" >
@@ -186,7 +186,7 @@
   
   <style >
  .ws img{
-  width: 200px;
+  width: 451px;
  }
   main {
     background-color: #f9f9f9;
@@ -425,7 +425,6 @@ hr{
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
   margin-left: -15px;
   
 }
@@ -499,11 +498,14 @@ width: 360px;
   .procong-name{
     padding-top: 0;
   }
+  
+  .hr{
+    margin:  0 0 20px 22%;
 
+  }
   hr{
     margin-top: 1rem;
     margin-bottom: 1rem;
-    margin:  0 0 20px 22%;
     border: 0;
     border-top: 1px solid rgb(0 0 0 / 28%);
   }

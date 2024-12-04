@@ -5,15 +5,18 @@
      
        <div>
          <label for="Email-or-Login">Email or Login:</label>
+         <p></p>
          <input type="text"  id="Email-or-Login" v-model="email"  required />
          <p v-if="emailError" class="error-message">{{ emailError }}</p>
+         <p></p>
        </div>
 
        <div>
          <label for="password">Password:</label>
+         <p></p>
          <input type="password"  id="password" v-model="password"  required />
          <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
-
+         <p></p>
         </div>
 
        <div style="display: flex; ">
@@ -22,7 +25,7 @@
        </div>
 
        <div class="end">
-         <a href="#" style="color: red; font-weight: 700;     width: 2000px;">Forgot Your Password?</a>
+         <a href="#" style="color: red; font-weight: 700;     width: 400px;">Forgot Your Password?</a>
          <button type="submit" class="button2" @click="login">Login</button>
        </div>
    </div>
@@ -168,7 +171,7 @@ export default {
   color: red;
 }
 .max{
-  padding: 10px 8% 10% 22%;
+  padding: 50px 8% 10% 18%;
   width: 1150px;
   text-align: justify;
   display: flex;
@@ -176,6 +179,7 @@ export default {
 }
 .login{
    width: 40%;
+   margin-left: 10%;
 }
 h1{
    text-align: center;
@@ -192,7 +196,7 @@ input{
    border: 1px solid #000000;
    border-radius: 5px;
    width: 100%;
-   height: 30px;
+   height: 40px;
 }
 .remember-me, .end{
    display: flex;
@@ -247,23 +251,27 @@ input{
 
 @media only screen and (max-width: 1669px){
 .max{
- padding: 10px 8% 10% 7%;
+ padding: 50px 8% 10% 10%;
  height: 377px;
 }
 }
 @media only screen and (max-width: 1362px){
 .max{
- padding: 10px 4% 10% 8%;
+ padding: 50px 4% 10% 8%;
+}
+.login{
+  margin-left: 5%;
+}
 }
 @media only screen and (max-width: 1300px){
 .max{
- padding: 10px 4% 10% 2%;
+ padding: 50px 4% 10% 2%;
 }
 }
-}
+
 @media only screen and (max-width: 1239px){
 .max{
- padding: 10px 1% 10% 5%;
+ padding: 50px 1% 10% 5%;
 }
 }
 @media only screen and (max-width: 1200px){
@@ -277,17 +285,17 @@ input{
 }
 @media only screen and (max-width: 1135px){
 .max{
- padding: 10px 1% 10% 5%;
+ padding: 50px 1% 10% 5%;
 }
 }
 @media only screen and (max-width: 1053px){
 .max{
- padding: 10px 1% 10% 4%;
+ padding: 50px 1% 10% 4%;
 }
 }
 @media only screen and (max-width: 1053px){
 .max{
- padding: 10px 1% 10% 4%;
+ padding: 50px 1% 10% 4%;
 }
 }
 @media only screen and (max-width: 991px){
@@ -302,32 +310,45 @@ input{
 }
 @media only screen and (max-width: 991px){
  .max{
-   padding: 10px 1% 10% 4%;
+   padding: 50px 1% 10% 4%;
 
  }
 }
 @media only screen and (max-width: 793px){
 .max{
- padding: 10px 1% 10% 3%;
-
+ padding: 50px 1% 10% 1%;
+}
+}
+@media only screen and (max-width: 884px){
+.login{
+  margin-left: 0.5%;
+}
+.max{
+ padding: 50px 1% 10% 1%;
+}
+}
+@media only screen and (max-width: 828px){
+.max{
+ padding: 50px 1% 10% 1%;
+ gap: 11px !important;
 }
 }
 @media only screen and (max-width: 809px){
 .max{
- padding: 10px 1% 10% 5%;
+ padding: 50px 1% 10% 1%;
 
 }
 }
 @media only screen and (max-width: 768px){
 .max{
- padding: 10px 0 10% 0;
+ padding: 50px 0 10% 0;
  width: 100%;
  display: flex;
  flex-direction: column;
  justify-content: center;
 }
 .max{
- padding: 10px 1% 28% 0.5%;
+ padding: 50px 1% 28% 0.5%;
 }
 .login{
  padding-left: 10%;
