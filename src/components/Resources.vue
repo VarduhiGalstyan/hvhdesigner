@@ -43,7 +43,7 @@
         </div>
         <div class="modal-body">
           <!-- reCAPTCHA widget -->
-          <div class="recaptcha" ref="recaptcha">
+          <div id="recaptcha-container">
           </div>
           <p v-if="recaptchaError" class="error-text recaptcha" 
               style="
@@ -133,31 +133,29 @@ export default {
       }
       this.errorMessage = ""; 
       this.modalVisible = true;  
-      const script = document.createElement('script');      
-    script.src = `https://www.google.com/recaptcha/api.js?render=${this.reCaptchaKey}`;
-    script.async = true;
-    script.onload = () => {
-      console.log('reCAPTCHA script loaded successfully');
+
       grecaptcha.ready(() => {
-        grecaptcha.execute(this.reCaptchaKey, { action: 'subscribe' })
-          .then((token) => {
+        grecaptcha.render('recaptcha-container', {
+          sitekey: this.reCaptchaKey,
+          callback: (token) => {
             this.recaptchaResponse = token;
-          });
+            this.recaptchaError = false;  
+          }
+        });
       });
-    };
-    document.head.appendChild(script);
     },
 
     closeModal() {
       this.modalVisible = false; 
     },
 
-    handleRecaptchaResponse(response) {
-      this.recaptchaResponse = response;
-    },
+    // handleRecaptchaResponse(response) {
+    //   this.recaptchaResponse = response;
+    // },
 
     async handleSubscribe() {
       if (!this.recaptchaResponse) {
+        this.recaptchaError = true;
         this.errorMessage = "Please complete the reCAPTCHA."; 
         return;
       }
@@ -272,20 +270,11 @@ export default {
       this.fetchCategories();
       this.fetchResources();
     }, 1000);
-
-    // const script = document.createElement('script');
-    // script.src = `https://www.google.com/recaptcha/api.js?render=${this.reCaptchaKey}`;
-    // script.async = true;
-    // script.onload = () => {
-    //   console.log('reCAPTCHA script loaded successfully');
-    //   grecaptcha.ready(() => {
-    //     grecaptcha.execute(this.reCaptchaKey, { action: 'subscribe' })
-    //       .then((token) => {
-    //         this.recaptchaResponse = token;
-    //       });
-    //   });
-    // };
-    // document.head.appendChild(script);
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${this.reCaptchaKey}`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
   },
 };
 </script>
