@@ -42,7 +42,6 @@ const store = createStore({
         console.error("Error during login:", error);
       }
     },
-  },
 
   async fetchSettings({ commit, state }) {
     try {
@@ -71,6 +70,8 @@ const store = createStore({
       console.error("Error fetching settings:", error);
     }
   },
+},
+
 });
 
 export default store;

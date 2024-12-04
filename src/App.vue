@@ -9,11 +9,39 @@
 <script>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
+import { useStore } from 'vuex';
+
+import { computed, onMounted } from 'vue';
+import { useHead } from '@vueuse/head';
 
 export default {
   components: {
     Header,
     Footer,
+  },
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      if (store.state.token) {
+        store.dispatch('fetchSettings');
+      }
+    });
+
+    const siteData = computed(() => store.getters.getSettings || {});
+
+    useHead({
+      title: computed(() => siteData.value.meta_title || 'huhbhb'),
+      meta: [
+        {
+          name: `description`,
+          content: computed(() => siteData.value.meta_description || ''),
+        },
+      ],
+    });
+    return{
+      siteData
+    };
   },
 };
 </script>
